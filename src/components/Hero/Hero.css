@@ -10,8 +10,7 @@
   left: 40%;
   transform: translate(-50%, -50%);
   font-size: 2.5rem;
+  font-family: var(--primary-font);
   color: white;
   text-transform: uppercase;
 }
-
-.hero-image {}

@@ -10,6 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Hero() {
 
   useEffect(() => {
+
     gsap.fromTo(
       ".hero-title",
       { opacity: 0, scale: 0 }, // Kezdőállapot
@@ -42,8 +43,8 @@ export default function Hero() {
       <section className='hero'>
         <Image className='her0-image' src="/hero.webp" alt="Hero Image"
           layout="fill"     // Makes the image fill the container
-          objectFit="cover" // Ensures the image covers the section
-          priority />
+          priority={true}
+          style={{ objectFit: "cover" }} />
         <h1 className='hero-title'>Portfolio by Eva Sipos</h1>
       </section>
     </>
