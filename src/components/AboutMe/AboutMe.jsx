@@ -124,6 +124,7 @@ const AboutMe = () => {
                 érzésről, amit a pillanat ébreszt bennünk."
               </span>
             </p>
+            <button className="contact-btn">Contact me</button>
           </div>
         </div>
       </div>

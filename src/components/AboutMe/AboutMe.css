@@ -62,11 +62,22 @@
   gap: 1rem;
 }
 
-.about-logo {
+.contact-btn {
   display: block;
   margin-left: auto;
-  margin-top: 1rem;
+  font-family: var(--secondary-font);
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  transition: 0.3s;
 }
+
+.contact-btn:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+
+}
+
 
 /* Responsive Design */
 @media (min-width: 768px) {
