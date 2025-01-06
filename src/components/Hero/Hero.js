@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import './Hero.css'
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import Image from 'next/image';
+import Image from "next/legacy/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -40,7 +40,7 @@ export default function Hero() {
   return (
     <>
       <section className='hero'>
-        <Image src="/hero.webp" alt="Hero Image"
+        <Image className='her0-image' src="/hero.webp" alt="Hero Image"
           layout="fill"     // Makes the image fill the container
           objectFit="cover" // Ensures the image covers the section
           priority />

@@ -1,6 +1,7 @@
 'use client';
-import { useEffect } from 'react'
-import './Navbar.css'
+import { useEffect, useState } from 'react';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import './Navbar.css';
 
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -8,10 +9,12 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   useEffect(() => {
     gsap.fromTo(
       ".navbar-text",
-      { opacity: 1, scale: 1, transformOrigin: "left bottom" }, // Kezdőállapot
+      { opacity: 1, scale: 1, transformOrigin: "left bottom" },
       {
         opacity: 0,
         scale: 0.4,
@@ -29,7 +32,7 @@ export default function Navbar() {
 
     gsap.fromTo(
       ".logo",
-      { opacity: 0, scale: 0, transformOrigin: "right bottom" }, // Kezdőállapot
+      { opacity: 0, scale: 0, transformOrigin: "right bottom" },
       {
         opacity: 1,
         scale: 1,
@@ -45,10 +48,9 @@ export default function Navbar() {
       }
     );
 
-    // Linkek mozgása jobbra
     gsap.fromTo(
       ".links",
-      { opacity: 0, scale: 0 }, // Kezdőállapot
+      { opacity: 0, scale: 0 },
       {
         opacity: 1,
         scale: 1,
@@ -64,75 +66,33 @@ export default function Navbar() {
       }
     );
 
-    // Cleanup: Törlés a komponens eltávolításakor
     return () => {
-      animation.kill(); // Az animáció törlése
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill()); // Minden ScrollTrigger törlése
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
+  }, []);
 
-  }, [])
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   return (
     <>
-      <section className='navbar-container'>
-        <nav className='navbar'>
-          <div className='logo'>Photography</div>
-          <ul className='links'
-          >
-            <li>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="#"
-                data-text="Home"
-              >
-                Home
-              </a>
-            </li>
-            <li>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="#"
-                data-text="Blogs"
-              >
-                About me
-              </a>
-            </li>
-            <li>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="#"
-                data-text="Coding"
-              >
-                My works
-              </a>
-            </li>
-            <li>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="#"
-                data-text="Extras"
-              >
-                Extras
-              </a>
-            </li>
-            <li>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="#"
-                data-text="Contact"
-              >
-                Contact
-              </a>
-            </li>
+      <section className="navbar-container">
+        <nav className="navbar">
+          <div className="logo">Photography</div>
+          <div className="hamburger" onClick={toggleMenu}>
+            {menuOpen ? <FaTimes size={30} /> : <FaBars size={30} />}
+          </div>
+          <ul className={`links ${menuOpen ? 'active' : ''}`}>
+            <li><a href="#" data-text="Home">Home</a></li>
+            <li><a href="#" data-text="About Me">About Me</a></li>
+            <li><a href="#" data-text="My Works">My Works</a></li>
+            <li><a href="#" data-text="Extras">Extras</a></li>
+            <li><a href="#" data-text="Contact">Contact</a></li>
           </ul>
         </nav>
-        <p className='navbar-text'>Photography</p>
+        <p className="navbar-text">Photography</p>
       </section>
     </>
-  )
+  );
 }
