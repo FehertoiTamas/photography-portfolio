@@ -1,13 +1,16 @@
 "use client";
-import { useEffect } from "react";
 import "./Portfolio.css";
+import { useEffect, useState } from "react";
 import Image from "next/legacy/image";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { GrBottomCorner, GrTopCorner } from "react-icons/gr";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Portfolio = () => {
+  const [hovered, setHovered] = useState(false);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const titleTexts = document.querySelectorAll(".portfolio-text");
@@ -54,7 +57,11 @@ const Portfolio = () => {
           <span className="numbers">0</span>
           <span className="numbers">1</span>
         </div>
-        <div className="portfolio-image">
+        <div
+          className="portfolio-image"
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
           <Image
             className="portfolio-image-next"
             src="/portfolio01.webp"
@@ -63,6 +70,25 @@ const Portfolio = () => {
             width={1100} // Set an appropriate width
             height={800} // Set a valid height (or calculate it based on aspect ratio)
           />
+          {hovered && (
+            <div className="focus-lines">
+              <div className="focus-line top-left">
+                <GrTopCorner size={80} />
+              </div>
+              <div className="focus-line top-right">
+                <GrTopCorner style={{ transform: "rotate(90deg)" }} size={80} />
+              </div>
+              <div className="focus-line bottom-left">
+                <GrBottomCorner
+                  style={{ transform: "rotate(90deg)" }}
+                  size={80}
+                />
+              </div>
+              <div className="focus-line bottom-right">
+                <GrBottomCorner size={80} />
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <div className="portfolio-container">
@@ -80,7 +106,11 @@ const Portfolio = () => {
         </h2>
       </div>
       <div className="portfolio-container">
-        <div className="portfolio-image">
+        <div
+          className="portfolio-image"
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
           <Image
             className="portfolio-image-next"
             src="/portfolio02.webp"
@@ -90,6 +120,25 @@ const Portfolio = () => {
             height={800} // Set a valid height (or calculate it based on aspect ratio)
             layout="intrinsic"
           />
+          {hovered && (
+            <div className="focus-lines">
+              <div className="focus-line top-left">
+                <GrTopCorner size={80} />
+              </div>
+              <div className="focus-line top-right">
+                <GrTopCorner style={{ transform: "rotate(90deg)" }} size={80} />
+              </div>
+              <div className="focus-line bottom-left">
+                <GrBottomCorner
+                  style={{ transform: "rotate(90deg)" }}
+                  size={80}
+                />
+              </div>
+              <div className="focus-line bottom-right">
+                <GrBottomCorner size={80} />
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="portfolio-side-text">
@@ -102,7 +151,11 @@ const Portfolio = () => {
           <span className="numbers">0</span>
           <span className="numbers">3</span>
         </div>
-        <div className="portfolio-image">
+        <div
+          className="portfolio-image"
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
           <Image
             className="portfolio-image-next"
             src="/portfolio03.webp"
@@ -112,6 +165,25 @@ const Portfolio = () => {
             height={800} // Set a valid height (or calculate it based on aspect ratio)
             layout="intrinsic"
           />
+          {hovered && (
+            <div className="focus-lines">
+              <div className="focus-line top-left">
+                <GrTopCorner size={80} />
+              </div>
+              <div className="focus-line top-right">
+                <GrTopCorner style={{ transform: "rotate(90deg)" }} size={80} />
+              </div>
+              <div className="focus-line bottom-left">
+                <GrBottomCorner
+                  style={{ transform: "rotate(90deg)" }}
+                  size={80}
+                />
+              </div>
+              <div className="focus-line bottom-right">
+                <GrBottomCorner size={80} />
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <div className="portfolio-container">
