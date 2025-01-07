@@ -9,31 +9,39 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Portfolio = () => {
   useEffect(() => {
-    // Animálás a h2 elemekre
-    const titleText = document.querySelector(".portfolio-text");
-    const chars = titleText.textContent.split(""); // Szöveg karakterekre bontása
-    titleText.innerHTML = chars.map((char) => `<span>${char}</span>`).join(""); // Minden karaktert span-ba csomagol
+    const titleTexts = document.querySelectorAll(".portfolio-text");
 
-    const charSpans = document.querySelectorAll(".portfolio-text span");
+    titleTexts.forEach((titleText) => {
+      // Szöveg szavakra bontása és span elemekbe csomagolása
+      const words = titleText.textContent.trim().split(" ");
+      titleText.innerHTML = words
+        .map((word) => `<span class="word">${word}</span>`)
+        .join(" ");
 
-    gsap.set(".portfolio-text", { perspective: 400 });
+      const wordSpans = titleText.querySelectorAll(".word");
 
-    gsap.from(charSpans, {
-      duration: 0.8,
-      opacity: 0,
-      scale: 0,
-      y: 80,
-      rotationX: 180,
-      transformOrigin: "0% 50% -50",
-      ease: "back",
-      stagger: 0.05,
-      scrollTrigger: {
-        trigger: ".portfolio-text",
-        start: "top 80%", // Animáció indítása, amikor a szekció 80%-nál láthatóvá válik
-        end: "bottom 50%",
-        toggleActions: "play none none reverse", // Scrollra visszafordítható animáció
-        markers: true,
-      },
+      // Kezdeti állapot beállítása
+      gsap.set(wordSpans, { opacity: 0, y: 60 });
+
+      // Animáció beállítása fluid hullámhatással
+      gsap.to(wordSpans, {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: "sine.inOut", // Lágyabb, folyékony mozgás
+        stagger: {
+          amount: 0.6, // Az animáció teljes időtartama
+          from: "center", // Középről kifelé induló hullám
+          ease: "sine.inOut", // Stagger időzítésének simítása
+        },
+        scrollTrigger: {
+          trigger: titleText,
+          start: "top 80%",
+          end: "bottom 50%",
+          toggleActions: "play none none reverse",
+          markers: false, // Fejlesztési jelölők kikapcsolása, ha nem szükséges
+        },
+      });
     });
   }, []);
 
