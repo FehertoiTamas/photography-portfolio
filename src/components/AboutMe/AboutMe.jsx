@@ -43,9 +43,9 @@ const AboutMe = () => {
           duration: 2,
           ease: "sine.inOut",
           scrollTrigger: {
-            trigger: "",
+            trigger: ".about-container",
             start: "center bottom",
-            end: "center 20%",
+            end: "center 60%",
             scrub: true,
             markers: false,
           },
