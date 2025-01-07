@@ -5,86 +5,88 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const AboutMe = () => {
-  gsap.registerPlugin(ScrollTrigger); // Regisztráljuk a ScrollTrigger plugint
-
   useEffect(() => {
-    const aboutImage = document.querySelector(".about-image img");
+    if (typeof window !== "undefined") {
+      const aboutImage = document.querySelector(".about-image img");
 
-    gsap.fromTo(
-      aboutImage,
-      {
-        y: 100, // Kezdő pozíció
-        opacity: 0, // Kezdettől fogva átlátszó
-      },
-      {
-        y: 0, // Végállapot
-        opacity: 1, // Az animáció végére láthatóvá válik
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".about-image",
-          start: "top bottom",
-          end: "top center",
-          toggleActions: "restart none none none",
-          markers: false,
+      gsap.fromTo(
+        aboutImage,
+        {
+          y: 100, // Kezdő pozíció
+          opacity: 0, // Kezdettől fogva átlátszó
         },
-      }
-    );
+        {
+          y: 0, // Végállapot
+          opacity: 1, // Az animáció végére láthatóvá válik
+          duration: 1.5,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".about-image",
+            start: "top bottom",
+            end: "top center",
+            toggleActions: "restart none none none",
+            markers: false,
+          },
+        }
+      );
 
-    const aboutMe = document.querySelector(".about-container");
-    gsap.fromTo(
-      aboutMe,
-      { opacity: 0, scale: 0.8 }, // Kezdőállapot
-      {
-        opacity: 1,
-        scale: 1,
-        duration: 2,
-        ease: "sine.inOut",
-        scrollTrigger: {
-          trigger: "",
-          start: "center bottom",
-          end: "center 20%",
-          scrub: true,
-          markers: false,
-        },
-      }
-    );
+      const aboutMe = document.querySelector(".about-container");
+      gsap.fromTo(
+        aboutMe,
+        { opacity: 0, scale: 0.8 }, // Kezdőállapot
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 2,
+          ease: "sine.inOut",
+          scrollTrigger: {
+            trigger: "",
+            start: "center bottom",
+            end: "center 20%",
+            scrub: true,
+            markers: false,
+          },
+        }
+      );
 
-    const aboutText = document.querySelector(".about-content-text");
+      const aboutText = document.querySelector(".about-content-text");
 
-    gsap.fromTo(
-      aboutText,
-      { opacity: 0 },
-      {
-        opacity: 1,
-        duration: 2,
-        ease: "sine.inOut",
-        scrollTrigger: {
-          trigger: ".about-content-text",
-          start: "center bottom",
-          end: "center center",
-          scrub: true,
-        },
-      }
-    );
-    const aboutTitle = document.querySelector(".about-title");
+      gsap.fromTo(
+        aboutText,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 2,
+          ease: "sine.inOut",
+          scrollTrigger: {
+            trigger: ".about-content-text",
+            start: "center bottom",
+            end: "center center",
+            scrub: true,
+          },
+        }
+      );
+      const aboutTitle = document.querySelector(".about-title");
 
-    gsap.fromTo(
-      aboutTitle,
-      { opacity: 0 },
-      {
-        opacity: 1,
-        duration: 2,
-        ease: "sine.inOut",
-        scrollTrigger: {
-          trigger: ".about-title",
-          start: "center bottom",
-          end: "center center",
-          scrub: true,
-        },
-      }
-    );
+      gsap.fromTo(
+        aboutTitle,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 2,
+          ease: "sine.inOut",
+          scrollTrigger: {
+            trigger: ".about-title",
+            start: "center bottom",
+            end: "center center",
+            scrub: true,
+          },
+        }
+      );
+    }
   }, []);
   return (
     <section className="about-me">
@@ -94,9 +96,8 @@ const AboutMe = () => {
             className="about-image"
             src="/about-me.webp"
             alt="About Me Image"
-            objectFit="cover"
             style={{ objectFit: "cover" }}
-            priority={true}
+            priority
             width={400}
             height={0}
             layout="intrinsic"

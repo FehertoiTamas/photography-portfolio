@@ -12,63 +12,66 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    gsap.fromTo(
-      ".navbar-text",
-      { opacity: 1, scale: 1, transformOrigin: "left bottom" },
-      {
-        opacity: 0,
-        scale: 0.4,
-        duration: 2,
-        ease: "sine.inOut",
-        scrollTrigger: {
-          trigger: ".navbar-text",
-          start: "center 20%",
-          end: "bottom 10%",
-          scrub: true,
-          markers: false,
-        },
-      }
-    );
+    if (typeof window !== "undefined") {
+      gsap.fromTo(
+        ".navbar-text",
+        { opacity: 1, scale: 1, transformOrigin: "left bottom" },
+        {
+          opacity: 0,
+          scale: 0.4,
+          duration: 2,
+          ease: "sine.inOut",
+          scrollTrigger: {
+            trigger: ".navbar-text",
+            start: "center 20%",
+            end: "bottom 10%",
+            scrub: true,
+            markers: false,
+          },
+        }
+      );
 
-    gsap.fromTo(
-      ".logo",
-      { opacity: 0, scale: 0, transformOrigin: "right bottom" },
-      {
-        opacity: 1,
-        scale: 1,
-        duration: 2,
-        ease: "sine.inOut",
-        scrollTrigger: {
-          trigger: ".navbar-text",
-          start: "center 20%",
-          end: "bottom 10%",
-          scrub: true,
-          markers: false,
-        },
-      }
-    );
+      gsap.fromTo(
+        ".logo",
+        { opacity: 0, scale: 0, transformOrigin: "right bottom" },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 2,
+          ease: "sine.inOut",
+          scrollTrigger: {
+            trigger: ".navbar-text",
+            start: "center 20%",
+            end: "bottom 10%",
+            scrub: true,
+            markers: false,
+          },
+        }
+      );
 
-    gsap.fromTo(
-      ".links",
-      { opacity: 0, scale: 0 },
-      {
-        opacity: 1,
-        scale: 1,
-        duration: 2,
-        ease: "sine.inOut",
-        scrollTrigger: {
-          trigger: ".navbar-text",
-          start: "center 20%",
-          end: "bottom 10%",
-          scrub: true,
-          markers: false,
-        },
-      }
-    );
+      gsap.fromTo(
+        ".links",
+        { opacity: 0, scale: 0 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 2,
+          ease: "sine.inOut",
+          scrollTrigger: {
+            trigger: ".navbar-text",
+            start: "center 20%",
+            end: "bottom 10%",
+            scrub: true,
+            markers: false,
+          },
+        }
+      );
 
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
+      return () => {
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      };
+
+    }
   }, []);
 
   const toggleMenu = () => {

@@ -11,40 +11,46 @@ export default function Hero() {
 
   useEffect(() => {
 
-    gsap.fromTo(
-      ".hero-title",
-      { opacity: 0, scale: 0 }, // Kezdőállapot
-      {
-        opacity: 1,
-        scale: 1,
-        duration: 2,
-        ease: "sine.inOut",
-        scrollTrigger: {
-          trigger: ".navbar-text",
-          start: "center 20%",
-          end: "bottom 10%",
-          scrub: true,
-          markers: false,
-        },
-      }
-    );
+    if (typeof window !== "undefined") {
+      gsap.fromTo(
+        ".hero-title",
+        { opacity: 0, scale: 0 }, // Kezdőállapot
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 2,
+          ease: "sine.inOut",
+          scrollTrigger: {
+            trigger: ".navbar-text",
+            start: "center 20%",
+            end: "bottom 10%",
+            scrub: true,
+            markers: false,
+          },
+        }
+      );
 
+      // Cleanup: Törlés a komponens eltávolításakor
+      return () => {
+        animation.kill(); // Az animáció törlése
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill()); // Minden ScrollTrigger törlése
+      };
 
-    // Cleanup: Törlés a komponens eltávolításakor
-    return () => {
-      animation.kill(); // Az animáció törlése
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill()); // Minden ScrollTrigger törlése
-    };
+    }
 
   }, [])
 
   return (
     <>
       <section className='hero'>
-        <Image className='her0-image' src="/hero.webp" alt="Hero Image"
-          layout="fill"     // Makes the image fill the container
-          priority={true}
-          style={{ objectFit: "cover" }} />
+        <Image
+          className='her0-image'
+          src="/hero.webp"
+          alt="Hero Image"
+          style={{ objectFit: "cover" }}
+          priority
+          layout="fill"
+        />
         <h1 className='hero-title'>Portfolio by Eva Sipos</h1>
       </section>
     </>
