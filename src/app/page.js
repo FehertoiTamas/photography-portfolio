@@ -1,5 +1,4 @@
 import Navbar from "@/components/Navbar/Navbar";
-import styles from "./page.module.css";
 import Hero from "@/components/Hero/Hero";
 import AboutMe from "@/components/AboutMe/AboutMe";
 import Portfolio from "@/components/Portfolio/Portfolio";

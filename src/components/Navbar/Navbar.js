@@ -13,7 +13,11 @@ export default function Navbar() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      gsap.fromTo(
+
+      // Animációk és trigger-ek gyűjtése
+      const animations = [];
+
+      const animation1 = gsap.fromTo(
         ".navbar-text",
         { opacity: 1, scale: 1, transformOrigin: "left bottom" },
         {
@@ -31,7 +35,9 @@ export default function Navbar() {
         }
       );
 
-      gsap.fromTo(
+      animations.push(animation1);
+
+      const animation2 = gsap.fromTo(
         ".logo",
         { opacity: 0, scale: 0, transformOrigin: "right bottom" },
         {
@@ -49,7 +55,9 @@ export default function Navbar() {
         }
       );
 
-      gsap.fromTo(
+      animations.push(animation2);
+
+      const animation3 = gsap.fromTo(
         ".links",
         { opacity: 0, scale: 0 },
         {
@@ -67,10 +75,15 @@ export default function Navbar() {
         }
       );
 
+      animations.push(animation3);
+
+      // Cleanup funkció a komponens eltávolításakor
       return () => {
+        // Minden animáció törlése
+        animations.forEach((animation) => animation.kill());
+        // Minden ScrollTrigger törlése
         ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       };
-
     }
   }, []);
 

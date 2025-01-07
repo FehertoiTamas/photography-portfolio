@@ -74,7 +74,6 @@ export default function Hero() {
       animations.push(animation3);
 
 
-
       // Cleanup funkció a komponens eltávolításakor
       return () => {
         // Minden animáció törlése
