@@ -4,7 +4,7 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 1fr);
   width: 100%;
-  height: 100vh;
+  height: 100%;
 }
 
 .portfolio-container {
@@ -112,4 +112,37 @@
   font-family: var(--primary-font);
   font-size: 1.75rem;
   padding: 2rem
+}
+
+@media (max-width: 768px) {
+  .portfolio {
+    display: flex;
+    flex-direction: column;
+
+    padding: 2rem 1rem
+  }
+
+  .portfolio-container {
+    flex-direction: column;
+  }
+
+  .portfolio-side-text {
+    transform: rotate(0deg);
+    gap: 5px;
+    font-size: 1.75rem;
+  }
+
+  .numbers {
+    transform: rotate(0deg);
+  }
+
+  .reverse {
+    flex-direction: column-reverse;
+  }
+
+  .portfolio-text {
+    font-size: 1.5rem;
+    padding: 1rem 0;
+  }
+
 }

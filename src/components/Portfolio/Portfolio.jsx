@@ -52,7 +52,7 @@ const Portfolio = () => {
 
   return (
     <section className="portfolio">
-      <div className="portfolio-container">
+      <div className="portfolio-container reverse">
         <div className="portfolio-side-text">
           <span className="numbers">0</span>
           <span className="numbers">1</span>
@@ -91,6 +91,7 @@ const Portfolio = () => {
           )}
         </div>
       </div>
+
       <div className="portfolio-container">
         <h2 className="portfolio-text">
           "Fedezd fel Kuba színeit és történeteit egy lenyűgöző fotósorozaton
@@ -105,7 +106,7 @@ const Portfolio = () => {
           élővilágot tárja eléd."
         </h2>
       </div>
-      <div className="portfolio-container">
+      <div className="portfolio-container reverse">
         <div
           className="portfolio-image"
           onMouseEnter={() => setHovered(true)}
@@ -146,6 +147,7 @@ const Portfolio = () => {
           <span className="numbers">2</span>
         </div>
       </div>
+
       <div className="portfolio-container">
         <div className="portfolio-side-text">
           <span className="numbers">0</span>
