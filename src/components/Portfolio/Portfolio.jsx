@@ -14,6 +14,8 @@ const Portfolio = () => {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
+      // Tároló az animációkhoz és a trigger-ekhez
+      const animations = [];
       const titleTexts = document.querySelectorAll(".portfolio-text");
 
       titleTexts.forEach((titleText) => {
@@ -28,8 +30,8 @@ const Portfolio = () => {
         // Kezdeti állapot beállítása
         gsap.set(wordSpans, { opacity: 0, y: 60 });
 
-        // Animáció beállítása fluid hullámhatással
-        gsap.to(wordSpans, {
+        // Animáció létrehozása
+        const animation = gsap.to(wordSpans, {
           opacity: 1,
           y: 0,
           duration: 1.2,
@@ -47,10 +49,18 @@ const Portfolio = () => {
             markers: false, // Fejlesztési jelölők kikapcsolása, ha nem szükséges
           },
         });
+
+        // Animáció mentése
+        animations.push(animation);
       });
+
+      // Cleanup: Minden animáció és trigger törlése
+      return () => {
+        animations.forEach((animation) => animation.kill());
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      };
     }
   }, []);
-
   return (
     <section className="portfolio">
       <div className="portfolio-container reverse">

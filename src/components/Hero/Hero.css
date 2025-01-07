@@ -9,8 +9,27 @@
   top: 30%;
   left: 40%;
   transform: translate(-50%, -50%);
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   font-family: var(--primary-font);
   color: white;
   text-transform: uppercase;
+}
+
+.social-icons-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  position: absolute;
+  top: 92%;
+  left: 40%;
+}
+
+.social-icon {
+  color: gold;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
 }

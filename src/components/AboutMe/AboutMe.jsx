@@ -10,9 +10,11 @@ gsap.registerPlugin(ScrollTrigger);
 const AboutMe = () => {
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const aboutImage = document.querySelector(".about-image img");
+      // Animációk és trigger-ek gyűjtése
+      const animations = [];
 
-      gsap.fromTo(
+      const aboutImage = document.querySelector(".about-image img");
+      const animation1 = gsap.fromTo(
         aboutImage,
         {
           y: 100, // Kezdő pozíció
@@ -21,7 +23,7 @@ const AboutMe = () => {
         {
           y: 0, // Végállapot
           opacity: 1, // Az animáció végére láthatóvá válik
-          duration: 1.5,
+          duration: 1.8,
           ease: "power2.out",
           scrollTrigger: {
             trigger: ".about-image",
@@ -32,9 +34,10 @@ const AboutMe = () => {
           },
         }
       );
+      animations.push(animation1);
 
       const aboutMe = document.querySelector(".about-container");
-      gsap.fromTo(
+      const animation2 = gsap.fromTo(
         aboutMe,
         { opacity: 0, scale: 0.8 }, // Kezdőállapot
         {
@@ -51,41 +54,15 @@ const AboutMe = () => {
           },
         }
       );
+      animations.push(animation2);
 
-      const aboutText = document.querySelector(".about-content-text");
-
-      gsap.fromTo(
-        aboutText,
-        { opacity: 0 },
-        {
-          opacity: 1,
-          duration: 2,
-          ease: "sine.inOut",
-          scrollTrigger: {
-            trigger: ".about-content-text",
-            start: "center bottom",
-            end: "center center",
-            scrub: true,
-          },
-        }
-      );
-      const aboutTitle = document.querySelector(".about-title");
-
-      gsap.fromTo(
-        aboutTitle,
-        { opacity: 0 },
-        {
-          opacity: 1,
-          duration: 2,
-          ease: "sine.inOut",
-          scrollTrigger: {
-            trigger: ".about-title",
-            start: "center bottom",
-            end: "center center",
-            scrub: true,
-          },
-        }
-      );
+      // Cleanup funkció a komponens eltávolításakor
+      return () => {
+        // Minden animáció törlése
+        animations.forEach((animation) => animation.kill());
+        // Minden ScrollTrigger törlése
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      };
     }
   }, []);
   return (

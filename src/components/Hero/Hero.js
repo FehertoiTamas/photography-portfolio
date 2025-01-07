@@ -4,6 +4,8 @@ import './Hero.css'
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/legacy/image";
+import { SiFacebook, SiTiktok, SiInstagram } from "react-icons/si";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -47,6 +49,20 @@ export default function Hero() {
           layout="fill"
         />
         <h1 className='hero-title'>Portfolio by Eva Sipos</h1>
+
+        {/* Social Icons */}
+        <div className="social-icons-wrapper">
+          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+            <SiFacebook size={52} />
+          </a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+            <SiInstagram size={52} />
+          </a>
+          <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+            <SiTiktok size={52} />
+          </a>
+        </div>
+
       </section>
     </>
   )
