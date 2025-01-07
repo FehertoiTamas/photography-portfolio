@@ -63,7 +63,7 @@ const Portfolio = () => {
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
-          <Link href="/cubaPage">
+          <Link href="/myWorksPage">
             <Image
               className="portfolio-image-next"
               src="/portfolio01.webp"
