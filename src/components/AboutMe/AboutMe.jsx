@@ -96,11 +96,9 @@ const AboutMe = () => {
             className="about-image"
             src="/about-me.webp"
             alt="About Me Image"
-            style={{ objectFit: "cover" }}
             priority
             width={400}
             height={0}
-            layout="intrinsic"
           />
         </div>
         <div className="about-content">

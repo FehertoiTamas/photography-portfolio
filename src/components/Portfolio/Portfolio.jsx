@@ -59,7 +59,6 @@ const Portfolio = () => {
             className="portfolio-image-next"
             src="/portfolio01.webp"
             alt=""
-            style={{ objectFit: "cover" }}
             priority
             width={1100} // Set an appropriate width
             height={800} // Set a valid height (or calculate it based on aspect ratio)
@@ -86,7 +85,6 @@ const Portfolio = () => {
             className="portfolio-image-next"
             src="/portfolio02.webp"
             alt=""
-            style={{ objectFit: "cover" }}
             priority
             width={1100} // Set an appropriate width
             height={800} // Set a valid height (or calculate it based on aspect ratio)
@@ -109,7 +107,6 @@ const Portfolio = () => {
             className="portfolio-image-next"
             src="/portfolio03.webp"
             alt=""
-            style={{ objectFit: "cover" }}
             priority
             width={1100} // Set an appropriate width
             height={800} // Set a valid height (or calculate it based on aspect ratio)

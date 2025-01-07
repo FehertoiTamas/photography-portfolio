@@ -47,7 +47,6 @@ export default function Hero() {
           className='her0-image'
           src="/hero.webp"
           alt="Hero Image"
-          style={{ objectFit: "cover" }}
           priority
           layout="fill"
         />
