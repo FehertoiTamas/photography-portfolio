@@ -58,7 +58,7 @@
 .about-content {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -75,9 +75,7 @@
   background-color: black;
   color: white;
   cursor: pointer;
-
 }
-
 
 /* Responsive Design */
 @media (min-width: 768px) {
@@ -86,7 +84,12 @@
     text-align: left;
   }
 
-  .about-container h2 {
+  .about-content {
+    align-items: flex-start;
+  }
+
+
+  .about-title {
     font-size: 3rem;
   }
 
