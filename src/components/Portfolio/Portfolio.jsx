@@ -5,6 +5,7 @@ import Image from "next/legacy/image";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { GrBottomCorner, GrTopCorner } from "react-icons/gr";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -62,33 +63,38 @@ const Portfolio = () => {
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
-          <Image
-            className="portfolio-image-next"
-            src="/portfolio01.webp"
-            alt=""
-            priority
-            width={1100} // Set an appropriate width
-            height={800} // Set a valid height (or calculate it based on aspect ratio)
-          />
-          {hovered && (
-            <div className="focus-lines">
-              <div className="focus-line top-left">
-                <GrTopCorner size={80} />
+          <Link href="/cubaPage">
+            <Image
+              className="portfolio-image-next"
+              src="/portfolio01.webp"
+              alt=""
+              priority
+              width={1100} // Set an appropriate width
+              height={800} // Set a valid height (or calculate it based on aspect ratio)
+            />
+            {hovered && (
+              <div className="focus-lines">
+                <div className="focus-line top-left">
+                  <GrTopCorner size={80} />
+                </div>
+                <div className="focus-line top-right">
+                  <GrTopCorner
+                    style={{ transform: "rotate(90deg)" }}
+                    size={80}
+                  />
+                </div>
+                <div className="focus-line bottom-left">
+                  <GrBottomCorner
+                    style={{ transform: "rotate(90deg)" }}
+                    size={80}
+                  />
+                </div>
+                <div className="focus-line bottom-right">
+                  <GrBottomCorner size={80} />
+                </div>
               </div>
-              <div className="focus-line top-right">
-                <GrTopCorner style={{ transform: "rotate(90deg)" }} size={80} />
-              </div>
-              <div className="focus-line bottom-left">
-                <GrBottomCorner
-                  style={{ transform: "rotate(90deg)" }}
-                  size={80}
-                />
-              </div>
-              <div className="focus-line bottom-right">
-                <GrBottomCorner size={80} />
-              </div>
-            </div>
-          )}
+            )}
+          </Link>
         </div>
       </div>
 

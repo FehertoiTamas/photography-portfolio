@@ -10,9 +10,8 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Hero() {
 
   useEffect(() => {
-
     if (typeof window !== "undefined") {
-      gsap.fromTo(
+      const animation = gsap.fromTo(
         ".hero-title",
         { opacity: 0, scale: 0 }, // Kezdőállapot
         {
@@ -35,11 +34,8 @@ export default function Hero() {
         animation.kill(); // Az animáció törlése
         ScrollTrigger.getAll().forEach((trigger) => trigger.kill()); // Minden ScrollTrigger törlése
       };
-
     }
-
-  }, [])
-
+  }, []);
   return (
     <>
       <section className='hero'>
