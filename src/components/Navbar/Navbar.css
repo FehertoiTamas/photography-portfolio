@@ -96,5 +96,10 @@
   }
 
   .navbar-text {}
+}
 
+@media (max-width: 480px) {
+  .navbar-text {
+    display: none;
+  }
 }

@@ -30,3 +30,28 @@
   color: rgb(181, 141, 8);
   transition: transform 0.3s ease, color 0.3s ease;
 }
+
+@media (max-width: 768px) {
+  .hero-title {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    min-width: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    top: 25%;
+
+    font-size: 2.5rem;
+    min-width: 300px;
+  }
+
+  .hero {
+    height: 80vh;
+  }
+
+}

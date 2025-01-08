@@ -17,25 +17,30 @@ export default function Hero() {
       // Animációk és trigger-ek gyűjtése
       const animations = [];
 
-      const animation1 = gsap.fromTo(
-        ".hero-title",
-        { opacity: 0, scale: 0 }, // Kezdőállapot
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 2,
-          ease: "sine.inOut",
-          scrollTrigger: {
-            trigger: ".navbar-text",
-            start: "center 20%",
-            end: "bottom 10%",
-            scrub: true,
-            markers: false,
-          },
-        }
-      );
+      // Ellenőrizzük a képernyőméretet
+      const screenWidth = window.innerWidth;
 
-      animations.push(animation1);
+      if (screen > 768) {
+        const animation1 = gsap.fromTo(
+          ".hero-title",
+          { opacity: 0, scale: 0 }, // Kezdőállapot
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 2,
+            ease: "sine.inOut",
+            scrollTrigger: {
+              trigger: ".navbar-text",
+              start: "center 20%",
+              end: "bottom 10%",
+              scrub: true,
+              markers: false,
+            },
+          }
+        );
+        animations.push(animation1);
+      }
+
 
       const animation2 = gsap.fromTo(
         ".social-icon3",
