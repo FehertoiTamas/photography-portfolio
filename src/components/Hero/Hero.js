@@ -20,7 +20,7 @@ export default function Hero() {
       // Ellenőrizzük a képernyőméretet
       const screenWidth = window.innerWidth;
 
-      if (screen > 768) {
+      if (screenWidth > 768) {
         const animation1 = gsap.fromTo(
           ".hero-title",
           { opacity: 0, scale: 0 }, // Kezdőállapot

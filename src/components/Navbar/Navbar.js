@@ -25,7 +25,7 @@ export default function Navbar() {
       // Ellenőrizzük a képernyőméretet
       const screenWidth = window.innerWidth;
 
-      if (screen > 768) {
+      if (screenWidth > 768) {
         const animation1 = gsap.fromTo(
           ".navbar-text",
           { opacity: 1, scale: 1, transformOrigin: "left bottom" },
@@ -43,8 +43,8 @@ export default function Navbar() {
             },
           }
         );
-
         animations.push(animation1);
+
       }
 
       if (screenWidth > 768) {

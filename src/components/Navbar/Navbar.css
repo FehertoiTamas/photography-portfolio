@@ -94,8 +94,6 @@
   .navbar ul a {
     font-size: 1.2rem;
   }
-
-  .navbar-text {}
 }
 
 @media (max-width: 480px) {

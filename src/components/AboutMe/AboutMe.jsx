@@ -13,48 +13,53 @@ const AboutMe = () => {
       // Animációk és trigger-ek gyűjtése
       const animations = [];
 
-      const aboutImage = document.querySelector(".about-image img");
-      const animation1 = gsap.fromTo(
-        aboutImage,
-        {
-          y: 100, // Kezdő pozíció
-          opacity: 0, // Kezdettől fogva átlátszó
-        },
-        {
-          y: 0, // Végállapot
-          opacity: 1, // Az animáció végére láthatóvá válik
-          duration: 1.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".about-image",
-            start: "top bottom",
-            end: "top center",
-            toggleActions: "restart none none none",
-            markers: false,
-          },
-        }
-      );
-      animations.push(animation1);
+      // Ellenőrizzük a képernyőméretet
+      const screenWidth = window.innerWidth;
 
-      const aboutMe = document.querySelector(".about-container");
-      const animation2 = gsap.fromTo(
-        aboutMe,
-        { opacity: 0, scale: 0.8 }, // Kezdőállapot
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 2,
-          ease: "sine.inOut",
-          scrollTrigger: {
-            trigger: ".about-container",
-            start: "center bottom",
-            end: "center 60%",
-            scrub: true,
-            markers: false,
+      if (screen > 768) {
+        const aboutImage = document.querySelector(".about-image img");
+        const animation1 = gsap.fromTo(
+          aboutImage,
+          {
+            y: 100, // Kezdő pozíció
+            opacity: 0, // Kezdettől fogva átlátszó
           },
-        }
-      );
-      animations.push(animation2);
+          {
+            y: 0, // Végállapot
+            opacity: 1, // Az animáció végére láthatóvá válik
+            duration: 1.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: ".about-image",
+              start: "top bottom",
+              end: "top center",
+              toggleActions: "restart none none none",
+              markers: false,
+            },
+          }
+        );
+        animations.push(animation1);
+
+        const aboutMe = document.querySelector(".about-container");
+        const animation2 = gsap.fromTo(
+          aboutMe,
+          { opacity: 0, scale: 0.8 }, // Kezdőállapot
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 2,
+            ease: "sine.inOut",
+            scrollTrigger: {
+              trigger: ".about-container",
+              start: "center bottom",
+              end: "center 60%",
+              scrub: true,
+              markers: false,
+            },
+          }
+        );
+        animations.push(animation2);
+      }
 
       // Cleanup funkció a komponens eltávolításakor
       return () => {
