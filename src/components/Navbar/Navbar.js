@@ -11,72 +11,85 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+
   useEffect(() => {
     if (typeof window !== "undefined") {
 
       // Animációk és trigger-ek gyűjtése
       const animations = [];
 
-      const animation1 = gsap.fromTo(
-        ".navbar-text",
-        { opacity: 1, scale: 1, transformOrigin: "left bottom" },
-        {
-          opacity: 0,
-          scale: 0.4,
-          duration: 2,
-          ease: "sine.inOut",
-          scrollTrigger: {
-            trigger: ".navbar-text",
-            start: "center 20%",
-            end: "bottom 10%",
-            scrub: true,
-            markers: false,
-          },
-        }
-      );
+      // Ellenőrizzük a képernyőméretet
+      const screenWidth = window.innerWidth;
 
-      animations.push(animation1);
+      if (screen > 768) {
+        const animation1 = gsap.fromTo(
+          ".navbar-text",
+          { opacity: 1, scale: 1, transformOrigin: "left bottom" },
+          {
+            opacity: 0,
+            scale: 0.4,
+            duration: 2,
+            ease: "sine.inOut",
+            scrollTrigger: {
+              trigger: ".navbar-text",
+              start: "center 20%",
+              end: "bottom 10%",
+              scrub: true,
+              markers: false,
+            },
+          }
+        );
 
-      const animation2 = gsap.fromTo(
-        ".logo",
-        { opacity: 0, scale: 0, transformOrigin: "right bottom" },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 2,
-          ease: "sine.inOut",
-          scrollTrigger: {
-            trigger: ".navbar-text",
-            start: "center 20%",
-            end: "bottom 10%",
-            scrub: true,
-            markers: false,
-          },
-        }
-      );
+        animations.push(animation1);
+      }
 
-      animations.push(animation2);
+      if (screenWidth > 768) {
+        const animation2 = gsap.fromTo(
+          ".logo",
+          { opacity: 0, scale: 0, transformOrigin: "right bottom" },
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 2,
+            ease: "sine.inOut",
+            scrollTrigger: {
+              trigger: ".navbar-text",
+              start: "center 20%",
+              end: "bottom 10%",
+              scrub: true,
+              markers: false,
+            },
+          }
+        );
 
-      const animation3 = gsap.fromTo(
-        ".links",
-        { opacity: 0, scale: 0 },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 2,
-          ease: "sine.inOut",
-          scrollTrigger: {
-            trigger: ".navbar-text",
-            start: "center 20%",
-            end: "bottom 10%",
-            scrub: true,
-            markers: false,
-          },
-        }
-      );
+        animations.push(animation2);
+      }
 
-      animations.push(animation3);
-
+      // Animation 3 csak nagyobb képernyőkön
+      if (screenWidth > 768) {
+        const animation3 = gsap.fromTo(
+          ".links",
+          { opacity: 0, scale: 0 },
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 2,
+            ease: "sine.inOut",
+            scrollTrigger: {
+              trigger: ".navbar-text",
+              start: "center 20%",
+              end: "bottom 10%",
+              scrub: true,
+              markers: false,
+            },
+          }
+        );
+        animations.push(animation3);
+      }
       // Cleanup funkció a komponens eltávolításakor
       return () => {
         // Minden animáció törlése
@@ -86,10 +99,6 @@ export default function Navbar() {
       };
     }
   }, []);
-
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
 
   return (
     <>
