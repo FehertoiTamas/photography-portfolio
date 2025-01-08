@@ -16,7 +16,7 @@ const AboutMe = () => {
       // Ellenőrizzük a képernyőméretet
       const screenWidth = window.innerWidth;
 
-      if (screen > 768) {
+      if (screenWidth > 768) {
         const aboutImage = document.querySelector(".about-image img");
         const animation1 = gsap.fromTo(
           aboutImage,
@@ -70,6 +70,7 @@ const AboutMe = () => {
       };
     }
   }, []);
+
   return (
     <section className="about-me">
       <div className="about-container">

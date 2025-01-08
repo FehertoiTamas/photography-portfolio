@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 0;
   background: linear-gradient(to top, white, black);
 }
 
@@ -15,7 +15,7 @@
   grid-template-columns: 1fr;
   gap: 2rem;
   position: relative;
-  padding: 2rem;
+  padding: 0rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   background-color: white;
@@ -37,6 +37,7 @@
   font-size: 1rem;
   line-height: 1.6;
   padding: 0.5rem;
+  text-align: justify;
 }
 
 .about-container span {
@@ -62,9 +63,13 @@
   gap: 1rem;
 }
 
+.about-content-text {
+  padding: 1rem 0;
+}
+
 .contact-btn {
   display: block;
-  margin-left: auto;
+  margin: 0 auto;
   font-family: var(--secondary-font);
   padding: 1rem 2rem;
   border-radius: 4px;
