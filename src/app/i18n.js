@@ -2,6 +2,7 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import en from './locales/en.json';
 import hu from './locales/hu.json';
+import es from './locales/es.json';
 
 i18n
   .use(initReactI18next)
@@ -9,6 +10,7 @@ i18n
     resources: {
       en: { translation: en },
       hu: { translation: hu },
+      es: { translation: es },
     },
     lng: 'en', // Alapértelmezett nyelv
     fallbackLng: 'en', // Ha a nyelv nem található

@@ -122,10 +122,10 @@ export default function Navbar() {
             <li><a href="#" data-text="My Works">My Works</a></li>
             <li><a href="#" data-text="Extras">Extras</a></li>
             <li><a href="#" data-text="Contact">Contact</a></li>
+            <LanguageSwitcher />
           </ul>
-          <LanguageSwitcher />
         </nav>
-        <p className="navbar-text">{t('teszt')}</p>
+        <p className="navbar-text">photography</p>
       </section>
     </>
   );

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
@@ -10,8 +11,9 @@ export default function LanguageSwitcher() {
 
   return (
     <div>
-      <button onClick={() => changeLanguage("en")}>English</button>
-      <button onClick={() => changeLanguage("hu")}>Magyar</button>
+      <button onClick={() => changeLanguage("en")}>EN</button>
+      <button onClick={() => changeLanguage("hu")}>HU</button>
+      <button onClick={() => changeLanguage("es")}>ESP</button>
     </div>
   );
 }
