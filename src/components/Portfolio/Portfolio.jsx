@@ -15,54 +15,39 @@ const Portfolio = () => {
   const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      // Tároló az animációkhoz és a trigger-ekhez
-      const animations = [];
-      const titleTexts = document.querySelectorAll(".portfolio-text");
+    if (typeof window === "undefined") return;
 
-      titleTexts.forEach((titleText) => {
-        // Szöveg szavakra bontása és span elemekbe csomagolása
-        const words = titleText.textContent.trim().split(" ");
-        titleText.innerHTML = words
-          .map((word) => `<span class="word">${word}</span>`)
-          .join(" ");
+    gsap.registerPlugin(ScrollTrigger);
 
-        const wordSpans = titleText.querySelectorAll(".word");
+    const texts = gsap.utils.toArray(".portfolio-text");
 
-        // Kezdeti állapot beállítása
-        gsap.set(wordSpans, { opacity: 0, y: 60 });
-
-        // Animáció létrehozása
-        const animation = gsap.to(wordSpans, {
+    texts.forEach((text) => {
+      gsap.fromTo(
+        text,
+        {
+          opacity: 0,
+          y: 60,
+        },
+        {
           opacity: 1,
           y: 0,
-          duration: 1.2,
-          ease: "sine.inOut", // Lágyabb, folyékony mozgás
-          stagger: {
-            amount: 0.6, // Az animáció teljes időtartama
-            from: "center", // Középről kifelé induló hullám
-            ease: "sine.inOut", // Stagger időzítésének simítása
-          },
+          duration: 1.5,
+          ease: "power4.out",
           scrollTrigger: {
-            trigger: titleText,
+            trigger: text,
             start: "top 80%",
-            end: "bottom 50%",
+            end: "top 20%",
             toggleActions: "play none none reverse",
-            markers: false, // Fejlesztési jelölők kikapcsolása, ha nem szükséges
           },
-        });
+        }
+      );
+    });
 
-        // Animáció mentése
-        animations.push(animation);
-      });
-
-      // Cleanup: Minden animáció és trigger törlése
-      return () => {
-        animations.forEach((animation) => animation.kill());
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-      };
-    }
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
   }, []);
+
   return (
     <section className="portfolio">
       <div className="portfolio-container reverse">
