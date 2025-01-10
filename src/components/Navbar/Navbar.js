@@ -3,13 +3,21 @@ import { useEffect, useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import './Navbar.css';
 
+
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
+
+import { useTranslation } from 'react-i18next';
+
+
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { t } = useTranslation();
+
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -115,8 +123,9 @@ export default function Navbar() {
             <li><a href="#" data-text="Extras">Extras</a></li>
             <li><a href="#" data-text="Contact">Contact</a></li>
           </ul>
+          <LanguageSwitcher />
         </nav>
-        <p className="navbar-text">Photography</p>
+        <p className="navbar-text">{t('teszt')}</p>
       </section>
     </>
   );
