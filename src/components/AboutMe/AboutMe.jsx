@@ -4,10 +4,13 @@ import "./AboutMe.css";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTranslation } from "react-i18next";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const AboutMe = () => {
+  const { t } = useTranslation();
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       // Animációk és trigger-ek gyűjtése
@@ -85,28 +88,17 @@ const AboutMe = () => {
           />
         </div>
         <div className="about-content">
-          <h2 className="about-title">Eva Sipos</h2>
+          <h2 className="about-title">{t("about_me.title")}</h2>
           <div className="about-content-text">
-            <p>Hello and thank you visiting my website!</p>
-            <p>
-              As a passionate photographer, I strive to capture the beauty,
-              emotion, and unique stories in every moment. Whether it’s the
-              vibrant energy of a bustling cityscape, the quiet intimacy of a
-              portrait, or the breathtaking majesty of nature, I believe every
-              image has the power to connect us to something deeper. With a keen
-              eye for detail and a creative approach, I work to transform
-              ordinary scenes into extraordinary memories. My goal is not just
-              to take pictures, but to create timeless visual narratives that
-              inspire and resonate. Let’s create something unforgettable
-              together.
-            </p>
+            <p>{t("about_me.welcome")}</p>
+            <p>{t("about_me.introduction")}</p>
             <p>
               <span>
                 "A fényképezés nem csupán a látványról szól, hanem arról az
                 érzésről, amit a pillanat ébreszt bennünk."
               </span>
             </p>
-            <button className="contact-btn">Contact me</button>
+            <button className="contact-btn">{t("navbar.contact_me")}</button>
           </div>
         </div>
       </div>

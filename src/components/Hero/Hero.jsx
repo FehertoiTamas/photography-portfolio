@@ -1,19 +1,19 @@
 "use client";
-import React, { useEffect } from 'react'
-import './Hero.css'
+import React, { useEffect } from "react";
+import "./Hero.css";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/legacy/image";
 import { SiFacebook, SiTiktok, SiInstagram } from "react-icons/si";
-
+import { useTranslation } from "react-i18next";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-
       // Animációk és trigger-ek gyűjtése
       const animations = [];
 
@@ -40,7 +40,6 @@ export default function Hero() {
         );
         animations.push(animation1);
       }
-
 
       const animation2 = gsap.fromTo(
         ".social-icon3",
@@ -78,7 +77,6 @@ export default function Hero() {
 
       animations.push(animation3);
 
-
       // Cleanup funkció a komponens eltávolításakor
       return () => {
         // Minden animáció törlése
@@ -90,30 +88,44 @@ export default function Hero() {
   }, []);
   return (
     <>
-      <section className='hero'>
+      <section className="hero">
         <Image
-          className='her0-image'
+          className="her0-image"
           src="/hero.webp"
           alt="Hero Image"
           priority
           layout="fill"
         />
-        <h1 className='hero-title'>Portfolio by Eva Sipos</h1>
+        <h1 className="hero-title">{t("hero.title")}</h1>
 
         {/* Social Icons */}
         <div className="social-icons-wrapper">
-          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon social-icon1">
+          <a
+            href="https://www.facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon social-icon1"
+          >
             <SiFacebook size={52} />
           </a>
-          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+          <a
+            href="https://www.instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon"
+          >
             <SiInstagram size={52} />
           </a>
-          <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" className="social-icon social-icon3">
+          <a
+            href="https://www.tiktok.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon social-icon3"
+          >
             <SiTiktok size={52} />
           </a>
         </div>
-
       </section>
     </>
-  )
+  );
 }

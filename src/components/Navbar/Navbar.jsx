@@ -1,16 +1,13 @@
-'use client';
-import { useEffect, useState } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa';
-import './Navbar.css';
-
+"use client";
+import { useEffect, useState } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
+import "./Navbar.css";
 
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
+import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
 
-import { useTranslation } from 'react-i18next';
-
-
+import { useTranslation } from "react-i18next";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,15 +15,12 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { t } = useTranslation();
 
-
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
-
   useEffect(() => {
     if (typeof window !== "undefined") {
-
       // Animációk és trigger-ek gyűjtése
       const animations = [];
 
@@ -52,7 +46,6 @@ export default function Navbar() {
           }
         );
         animations.push(animation1);
-
       }
 
       if (screenWidth > 768) {
@@ -116,12 +109,22 @@ export default function Navbar() {
           <div className="hamburger" onClick={toggleMenu}>
             {menuOpen ? <FaTimes size={30} /> : <FaBars size={30} />}
           </div>
-          <ul className={`links ${menuOpen ? 'active' : ''}`}>
-            <li><a href="#" data-text="Home">Home</a></li>
-            <li><a href="#" data-text="About Me">About Me</a></li>
-            <li><a href="#" data-text="My Works">My Works</a></li>
-            <li><a href="#" data-text="Extras">Extras</a></li>
-            <li><a href="#" data-text="Contact">Contact</a></li>
+          <ul className={`links ${menuOpen ? "active" : ""}`}>
+            <li>
+              <a href="#" data-text="Home">
+                {t("navbar.home")}
+              </a>
+            </li>
+            <li>
+              <a href="#" data-text="My Works">
+                {t("navbar.my_works")}
+              </a>
+            </li>
+            <li>
+              <a href="#" data-text="Contact">
+                {t("navbar.contact_me")}
+              </a>
+            </li>
             <LanguageSwitcher />
           </ul>
         </nav>

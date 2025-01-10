@@ -1,4 +1,20 @@
 {
-  "welcome": "Welcome to our site!",
-  "teszt" : "its working"
+  "navbar": {
+    "home": "Home",
+    "my_works": "My Works",
+    "contact_me": "Contact"
+  },
+
+  "hero" : {
+    "title": "Portfolio by Eva Sipos"
+  },
+
+  "about_me" : {
+    "title": "Eva Sipos",
+    "welcome": "Hello and thank you visiting my website!",
+    "introduction": " As a passionate photographer, I strive to capture the beauty,emotion, and unique stories in every moment. Whether it’s the vibrant energy of a bustling cityscape, the quiet intimacy of a portrait, or the breathtaking majesty of nature, I believe every image has the power to connect us to something deeper. With a keen eye for detail and a creative approach, I work to transform ordinary scenes into extraordinary memories. My goal is not just to take pictures, but to create timeless visual narratives that inspire and resonate. Let’s create something unforgettable together.",
+    "quotes": "",
+    "btn": ""
+  }
+
 }
