@@ -6,10 +6,12 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { GrBottomCorner, GrTopCorner } from "react-icons/gr";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Portfolio = () => {
+  const { t } = useTranslation();
   const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
@@ -109,18 +111,11 @@ const Portfolio = () => {
       </div>
 
       <div className="portfolio-container">
-        <h2 className="portfolio-text">
-          "Fedezd fel Kuba színeit és történeteit egy lenyűgöző fotósorozaton
-          keresztül, amely az élet pezsgését és az idő varázsát örökíti meg."
-        </h2>
+        <h2 className="portfolio-text">"{t("portfolio.cuba")}"</h2>
       </div>
 
       <div className="portfolio-container">
-        <h2 className="portfolio-text">
-          "Merülj el a Galápagos-szigetek lenyűgöző világában egy fotósorozaton
-          keresztül, amely a természet érintetlen szépségét és az egyedülálló
-          élővilágot tárja eléd."
-        </h2>
+        <h2 className="portfolio-text">"{t("portfolio.galapagos")}"</h2>
       </div>
       <div className="portfolio-container reverse">
         <div
@@ -205,11 +200,7 @@ const Portfolio = () => {
         </div>
       </div>
       <div className="portfolio-container">
-        <h2 className="portfolio-text">
-          "Fedezd fel Peru varázslatos tájait és kulturális kincseit egy
-          lenyűgöző fotósorozaton keresztül, amely az Andok csodáit és az ősi
-          civilizációk nyomait tárja eléd."{" "}
-        </h2>
+        <h2 className="portfolio-text">"{t("portfolio.peru")}"</h2>
       </div>
     </section>
   );

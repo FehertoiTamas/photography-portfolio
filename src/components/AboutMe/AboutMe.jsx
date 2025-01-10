@@ -93,10 +93,7 @@ const AboutMe = () => {
             <p>{t("about_me.welcome")}</p>
             <p>{t("about_me.introduction")}</p>
             <p>
-              <span>
-                "A fényképezés nem csupán a látványról szól, hanem arról az
-                érzésről, amit a pillanat ébreszt bennünk."
-              </span>
+              <span>"{t("about_me.quotes")}"</span>
             </p>
             <button className="contact-btn">{t("navbar.contact_me")}</button>
           </div>

@@ -13,8 +13,13 @@
     "title": "Eva Sipos",
     "welcome": "Hello and thank you visiting my website!",
     "introduction": " As a passionate photographer, I strive to capture the beauty,emotion, and unique stories in every moment. Whether it’s the vibrant energy of a bustling cityscape, the quiet intimacy of a portrait, or the breathtaking majesty of nature, I believe every image has the power to connect us to something deeper. With a keen eye for detail and a creative approach, I work to transform ordinary scenes into extraordinary memories. My goal is not just to take pictures, but to create timeless visual narratives that inspire and resonate. Let’s create something unforgettable together.",
-    "quotes": "",
-    "btn": ""
+    "quotes": "Photography is not just about the view, but about the feeling that the moment evokes in us."
+  },
+
+  "portfolio" : {
+    "cuba": "Discover the colors and stories of Cuba through a stunning photo series that captures the effervescence of life and the magic of time.",
+    "galapagos": "Immerse yourself in the fascinating world of the Galapagos Islands through a photo series that reveals the untouched beauty of nature and the unique wildlife.",
+    "peru": "Discover the magical landscapes and cultural treasures of Peru through a stunning photo series that reveals the wonders of the Andes and traces of ancient civilizations."
   }
 
 }

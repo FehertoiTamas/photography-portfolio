@@ -2,11 +2,9 @@
 import { useEffect, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import "./Navbar.css";
-
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
-
 import { useTranslation } from "react-i18next";
 
 gsap.registerPlugin(ScrollTrigger);
