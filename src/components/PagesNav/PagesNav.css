@@ -1,0 +1,87 @@
+.navbar-container {
+  background-color: black;
+  width: 100%;
+}
+
+.navbar {
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  top: 0;
+  left: 0;
+  padding: 1rem 2rem;
+  background-color: black;
+  color: white;
+  z-index: 10;
+}
+
+.logo {
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-family: var(--primary-font);
+  color: rgb(136, 0, 0);
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+  color: white;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .links {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: black;
+    flex-direction: column;
+    gap: 10px;
+    padding: 1rem;
+    width: 100%;
+    display: none;
+    /* Alapértelmezés szerint elrejtve */
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .links.active {
+    display: flex;
+    /* Látható a menü, ha az active osztály hozzáadva */
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .links li {
+    text-align: center;
+  }
+
+  .navbar ul a {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {}

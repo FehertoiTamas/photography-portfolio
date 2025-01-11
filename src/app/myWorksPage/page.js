@@ -2,14 +2,14 @@
 import React from "react";
 import "./myWorkPage.css"
 import { useTranslation } from 'react-i18next';
-import LanguageSwitcher from "@/components/LanguageSwitcher/LanguageSwitcher";
+import PagesNav from "@/components/PagesNav/PagesNav";
 
 const myWorksPage = () => {
   const { t } = useTranslation();
   return (
     <section className="my-work-page">
-      <LanguageSwitcher />
-      <h2>{t('welcome')}</h2>
+      <PagesNav />
+      <h2>Portfoliok</h2>
     </section>
   );
 };

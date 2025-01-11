@@ -6,6 +6,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
 import { useTranslation } from "react-i18next";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -109,19 +110,13 @@ export default function Navbar() {
           </div>
           <ul className={`links ${menuOpen ? "active" : ""}`}>
             <li>
-              <a href="#" data-text="Home">
-                {t("navbar.home")}
-              </a>
+              <Link href="/">{t("navbar.home")}</Link>
             </li>
             <li>
-              <a href="#" data-text="My Works">
-                {t("navbar.my_works")}
-              </a>
+              <Link href="/myWorksPage">{t("navbar.my_works")}</Link>
             </li>
             <li>
-              <a href="#" data-text="Contact">
-                {t("navbar.contact_me")}
-              </a>
+              <Link href="/contactMe">{t("navbar.contact_me")}</Link>
             </li>
             <LanguageSwitcher />
           </ul>
