@@ -1,7 +1,5 @@
 "use client";
 import "./ScrollingText.css";
-import React, { useEffect } from "react";
-import { gsap } from "gsap";
 import { useTranslation } from "react-i18next";
 
 const ScrollingText = () => {
@@ -10,7 +8,9 @@ const ScrollingText = () => {
   return (
     <div className="scroll-container">
       <div className="scroll-text-container">
-        <p className="scroll-text">{t("scrolling_text")}</p>
+        <p className="scroll-text">{t("scrolling_text1")}</p>
+        <p className="scroll-text">{t("scrolling_text2")}</p>
+        <p className="scroll-text">{t("scrolling_text3")}</p>
       </div>
     </div>
   );

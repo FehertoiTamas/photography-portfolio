@@ -9,7 +9,9 @@
     "title": "Portfolio by Eva Sipos"
   },
 
-  "scrolling_text": "See Feel Capture",
+  "scrolling_text1": "See",
+  "scrolling_text2": "Feel",
+  "scrolling_text3": "Capture",
 
   "about_me" : {
     "title": "Eva Sipos",

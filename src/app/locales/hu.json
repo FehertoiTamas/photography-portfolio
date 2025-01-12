@@ -9,8 +9,9 @@
     "title": "Sipos Éva Portfólió"
   },
 
-  "scrolling_text": "Láss Érezz Örökíts",
-
+  "scrolling_text1": "Láss",
+  "scrolling_text2": "Érezz",
+  "scrolling_text3": "Örökíts",
 
   "about_me" : {
     "title": "Sipos Éva",
