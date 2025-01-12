@@ -1,0 +1,76 @@
+.background-video-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: black;
+}
+
+.background-video {
+  margin-top: 60px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: all 1s ease-in-out;
+  /* Transition minden változásra */
+}
+
+.shrink {
+  width: 50%;
+  /* Csökkentett szélesség */
+  right: 50%;
+  /* Jobbra helyezett pozíció */
+}
+
+.content {
+  position: absolute;
+  top: 30%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+  font-family: var(--primary-font);
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.show-content {}
+
+.contact-info {
+  position: absolute;
+  right: 15%;
+  top: 50%;
+  padding: 20px;
+  color: white;
+  width: 300px;
+  opacity: 0;
+  transform: translateY(-30px);
+  transition: opacity 1s ease 0.5s, transform 1s ease 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.contact-info.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contact-icon {
+  color: gold;
+  transition: transform 1s ease;
+  /* Transition animáció a transform változásra */
+}
+
+.contact-icon:hover {
+  transform: scale(1.5);
+  /* A scale-t a transform-al együtt alkalmazzuk */
+}
