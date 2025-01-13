@@ -2,6 +2,7 @@
 const isProd = process.env.NODE_ENV === 'production';
 
 const nextConfig = {
+  reactStrictMode: isProd,
   images: {
     unoptimized: isProd, // Ha production módban vagy, akkor kikapcsolja az optimalizálást
   },
