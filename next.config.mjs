@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig = {
-  i18n: {
-    locales: ['en', 'hu', 'es'], // Az elérhető nyelvek
-    defaultLocale: 'en',   // Az alapértelmezett nyelv
-    localeDetection: false, // Kikapcsoljuk az automatikus nyelvdetektálást
-  },
+  output: isProd ? 'export' : undefined,
+  basePath: isProd ? '/photography-portfolio' : '',
+  assetPrefix: isProd ? '/photography-portfolio/' : '',
 };
 
 export default nextConfig;
