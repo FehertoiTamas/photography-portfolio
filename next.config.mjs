@@ -2,7 +2,9 @@
 const isProd = process.env.NODE_ENV === 'production';
 
 const nextConfig = {
-  output: isProd ? 'export' : undefined,
+  images: {
+    unoptimized: isProd, // Ha production módban vagy, akkor kikapcsolja az optimalizálást
+  }, output: isProd ? 'export' : undefined,
   basePath: isProd ? '/photography-portfolio' : '',
   assetPrefix: isProd ? '/photography-portfolio/' : '',
 };
