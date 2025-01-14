@@ -1,9 +1,11 @@
+// MyWorksPage.jsx
 "use client";
-import "./myWorkPage.css";
-import React, { useState } from "react";
-import { useTranslation } from 'react-i18next';
-import PagesNav from "@/components/PagesNav/PagesNav";
+import React, { useState, useCallback } from "react";
 import Image from "next/legacy/image";
+import { useTranslation } from "react-i18next";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import PagesNav from "@/components/PagesNav/PagesNav";
+import "./myWorkPage.css";
 
 const portfolios = [
   {
@@ -46,13 +48,59 @@ const portfolios = [
 
 const MyWorksPage = () => {
   const { t } = useTranslation();
-
-  // Alapértelmezett portfólió kiválasztása (Cuba)
   const [selectedPortfolio, setSelectedPortfolio] = useState(portfolios[0]);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
   const handlePortfolioClick = (portfolio) => {
     setSelectedPortfolio(portfolio);
+    setSelectedImageIndex(null);
   };
+
+  const handleImageClick = (index) => {
+    setSelectedImageIndex(index);
+  };
+
+  const closeLightbox = () => {
+    setSelectedImageIndex(null);
+  };
+
+  const handlePrevImage = useCallback((e) => {
+    e.stopPropagation();
+    setSelectedImageIndex((prevIndex) =>
+      prevIndex > 0 ? prevIndex - 1 : selectedPortfolio.images.length - 1
+    );
+  }, [selectedPortfolio]);
+
+  const handleNextImage = useCallback((e) => {
+    e.stopPropagation();
+    setSelectedImageIndex((prevIndex) =>
+      prevIndex < selectedPortfolio.images.length - 1 ? prevIndex + 1 : 0
+    );
+  }, [selectedPortfolio]);
+
+  // Billentyűzet kezelés
+  React.useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (selectedImageIndex === null) return;
+
+      switch (e.key) {
+        case 'ArrowLeft':
+          handlePrevImage(e);
+          break;
+        case 'ArrowRight':
+          handleNextImage(e);
+          break;
+        case 'Escape':
+          closeLightbox();
+          break;
+        default:
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedImageIndex, handlePrevImage, handleNextImage]);
 
   return (
     <section className="my-work-page">
@@ -63,27 +111,59 @@ const MyWorksPage = () => {
             key={portfolio.id}
             data-text={portfolio.text}
             onClick={() => handlePortfolioClick(portfolio)}
-            className={`portfolio-button ${selectedPortfolio?.id === portfolio.id ? "active" : ""}`}
+            className={`portfolio-button ${selectedPortfolio?.id === portfolio.id ? "active" : ""
+              }`}
           >
             {portfolio.title}
           </p>
         ))}
       </div>
-      {selectedPortfolio ? (
-        <div className="portfolio-gallery">
-          {selectedPortfolio.images.map((image, index) => (
+
+      <div className="portfolio-gallery">
+        {selectedPortfolio?.images.map((image, index) => (
+          <div
+            key={index}
+            className="portfolio-image-container"
+            onClick={() => handleImageClick(index)}
+          >
             <Image
-              key={index}
               src={image}
               alt={`Portfolio ${selectedPortfolio.id} Image ${index + 1}`}
               width={1200}
               height={800}
               className="portfolio-image"
             />
-          ))}
+          </div>
+        ))}
+      </div>
+
+      {selectedImageIndex !== null && (
+        <div className="lightbox" onClick={closeLightbox}>
+          <button className="lightbox-close" onClick={closeLightbox}>
+            <X size={32} />
+          </button>
+
+          <button className="lightbox-nav lightbox-prev" onClick={handlePrevImage}>
+            <ChevronLeft size={40} />
+          </button>
+
+          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+            <Image
+              src={selectedPortfolio.images[selectedImageIndex]}
+              alt={`Image ${selectedImageIndex + 1}`}
+              width={1200}
+              height={800}
+              className="lightbox-image"
+            />
+            <div className="lightbox-counter">
+              {selectedImageIndex + 1} / {selectedPortfolio.images.length}
+            </div>
+          </div>
+
+          <button className="lightbox-nav lightbox-next" onClick={handleNextImage}>
+            <ChevronRight size={40} />
+          </button>
         </div>
-      ) : (
-        <p>Please select a portfolio to view its images.</p>
       )}
     </section>
   );
