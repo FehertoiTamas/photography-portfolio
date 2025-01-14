@@ -5,11 +5,11 @@ import { useTranslation } from 'react-i18next';
 import PagesNav from "@/components/PagesNav/PagesNav";
 import Image from "next/legacy/image";
 
-
 const portfolios = [
   {
     id: 1,
     title: "Cuba",
+    text: "Cuba",
     images: [
       "/portfolio1/image1.webp",
       "/portfolio1/image2.webp",
@@ -25,6 +25,7 @@ const portfolios = [
   {
     id: 2,
     title: "Galapagos",
+    text: "Galapagos",
     images: [
       "/images/portfolio2/image1.jpg",
       "/images/portfolio2/image2.jpg",
@@ -34,6 +35,7 @@ const portfolios = [
   {
     id: 3,
     title: "Peru",
+    text: "Peru",
     images: [
       "/images/portfolio3/image1.jpg",
       "/images/portfolio3/image2.jpg",
@@ -44,7 +46,9 @@ const portfolios = [
 
 const MyWorksPage = () => {
   const { t } = useTranslation();
-  const [selectedPortfolio, setSelectedPortfolio] = useState(null);
+
+  // Alapértelmezett portfólió kiválasztása (Cuba)
+  const [selectedPortfolio, setSelectedPortfolio] = useState(portfolios[0]);
 
   const handlePortfolioClick = (portfolio) => {
     setSelectedPortfolio(portfolio);
@@ -53,17 +57,16 @@ const MyWorksPage = () => {
   return (
     <section className="my-work-page">
       <PagesNav />
-      <h2>Portfolios</h2>
       <div className="portfolio-selector">
         {portfolios.map((portfolio) => (
-          <button
+          <p
             key={portfolio.id}
+            data-text={portfolio.text}
             onClick={() => handlePortfolioClick(portfolio)}
-            className={`portfolio-button ${selectedPortfolio?.id === portfolio.id ? "active" : ""
-              }`}
+            className={`portfolio-button ${selectedPortfolio?.id === portfolio.id ? "active" : ""}`}
           >
             {portfolio.title}
-          </button>
+          </p>
         ))}
       </div>
       {selectedPortfolio ? (

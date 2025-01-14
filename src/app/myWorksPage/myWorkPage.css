@@ -6,29 +6,70 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  overflow: hidden;
 }
 
 .portfolio-selector {
+  background-color: azure;
+  width: 100%;
+  padding: 2rem 0;
   display: flex;
   flex-direction: column;
 }
 
 .portfolio-button {
-  width: 100px;
-  margin: 0.5rem;
+  position: relative;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: var(--primary-font);
   padding: 0.5rem 1rem;
-  background-color: #007bff;
-  color: white;
+  color: #7b7a7a;
   border: none;
   cursor: pointer;
+  transition: 0.5s;
+  z-index: 2;
+}
+
+.portfolio-button:hover {
+  color: #000;
 }
 
 .portfolio-button.active {
-  background-color: #0056b3;
+  color: rgb(136, 0, 0);
+}
+
+.portfolio-button:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 6rem;
+  color: rgba(0, 0, 0, 0.1);
+  z-index: -1;
+  opacity: 0;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 500px;
+  transition: letter-spacing 0.5s, left 0.5s;
+  overflow: hidden;
+}
+
+.portfolio-button:hover:before {
+  content: attr(data-text);
+  opacity: 1;
+  left: 50%;
+  letter-spacing: 10px;
+  overflow: hidden;
 }
 
 .portfolio-gallery {
   width: 100%;
+  padding: 1rem;
   background-color: black;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
