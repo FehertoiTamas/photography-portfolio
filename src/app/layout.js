@@ -1,5 +1,6 @@
 import I18nInitializer from "@/components/I18nInitializer";
 import "./globals.css";
+import Footer from "@/components/Footer/Footer";
 
 
 export const metadata = {
@@ -13,6 +14,7 @@ export default function RootLayout({ children }) {
       <body  >
         <I18nInitializer />
         {children}
+        <Footer />
       </body>
     </html>
   );
