@@ -8,22 +8,47 @@ import { useTranslation } from "react-i18next";
 
 const ContactMe = () => {
   const { t } = useTranslation();
+  const [isMounted, setIsMounted] = useState(false);
   const [videoEnded, setVideoEnded] = useState(false);
   const [isFormVisible, setIsFormVisible] = useState(false);
+
+  // Kezdeti mount kezelése
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const handleVideoEnd = () => {
     setVideoEnded(true);
   };
 
-  // useEffect a form megjelenítésére és animációjára
+  // Form megjelenítése csak client oldalon
   useEffect(() => {
+    if (!isMounted) return;
+
     if (videoEnded) {
       setTimeout(() => {
-        setIsFormVisible(true); // A form megjelenítése 0.5 másodperccel a videó vége után
-      }, 800);  // Késleltetés az animáció elindulásához
+        setIsFormVisible(true);
+      }, 800);
     }
-  }, [videoEnded]);
+  }, [videoEnded, isMounted]);
 
+  // SSR és kezdeti kliens oldali render
+  if (!isMounted) {
+    return (
+      <section className="background-video-container">
+        <PagesNav />
+        <video className="background-video" muted>
+          <source src="/contact-bg.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div className="content">
+          <h2>{t("contact_me")}</h2>
+        </div>
+      </section>
+    );
+  }
+
+  // Teljes render animációkkal és interaktivitással
   return (
     <section className="background-video-container">
       <PagesNav />
@@ -41,7 +66,6 @@ const ContactMe = () => {
       </div>
       {isFormVisible && (
         <div className={`contact-info ${isFormVisible ? "active" : ""}`}>
-          {/* Social Icons */}
           <a
             href="https://wa.me/1234567890"
             target="_blank"
@@ -55,8 +79,7 @@ const ContactMe = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="contact-icon">
-            <FiMail size={52}
-            />
+            <FiMail size={52} />
           </a>
 
           <a
@@ -83,8 +106,6 @@ const ContactMe = () => {
           >
             <SiTiktok size={52} />
           </a>
-
-
         </div>
       )}
     </section>

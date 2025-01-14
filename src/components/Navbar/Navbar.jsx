@@ -8,28 +8,41 @@ import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
 
-gsap.registerPlugin(ScrollTrigger);
-
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const { t } = useTranslation();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
+  // Handle initial mounting
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      // Animációk és trigger-ek gyűjtése
-      const animations = [];
+    setIsMounted(true);
 
-      // Ellenőrizzük a képernyőméretet
-      const screenWidth = window.innerWidth;
+    // Register GSAP plugin after component mounts
+    gsap.registerPlugin(ScrollTrigger);
+  }, []);
 
-      if (screenWidth > 768) {
-        const animation1 = gsap.fromTo(
+  // Handle animations after component is mounted
+  useEffect(() => {
+    if (!isMounted) return;
+
+    const animations = [];
+    const screenWidth = window.innerWidth;
+
+    // Only run animations on larger screens
+    if (screenWidth > 768) {
+      // Navbar text animation
+      animations.push(
+        gsap.fromTo(
           ".navbar-text",
-          { opacity: 1, scale: 1, transformOrigin: "left bottom" },
+          {
+            opacity: 1,
+            scale: 1,
+            transformOrigin: "left bottom",
+          },
           {
             opacity: 0,
             scale: 0.4,
@@ -43,14 +56,18 @@ export default function Navbar() {
               markers: false,
             },
           }
-        );
-        animations.push(animation1);
-      }
+        )
+      );
 
-      if (screenWidth > 768) {
-        const animation2 = gsap.fromTo(
+      // Logo animation
+      animations.push(
+        gsap.fromTo(
           ".logo",
-          { opacity: 0, scale: 0, transformOrigin: "right bottom" },
+          {
+            opacity: 0,
+            scale: 0,
+            transformOrigin: "right bottom",
+          },
           {
             opacity: 1,
             scale: 1,
@@ -64,16 +81,17 @@ export default function Navbar() {
               markers: false,
             },
           }
-        );
+        )
+      );
 
-        animations.push(animation2);
-      }
-
-      // Animation 3 csak nagyobb képernyőkön
-      if (screenWidth > 768) {
-        const animation3 = gsap.fromTo(
+      // Links animation
+      animations.push(
+        gsap.fromTo(
           ".links",
-          { opacity: 0, scale: 0 },
+          {
+            opacity: 0,
+            scale: 0,
+          },
           {
             opacity: 1,
             scale: 1,
@@ -87,28 +105,27 @@ export default function Navbar() {
               markers: false,
             },
           }
-        );
-        animations.push(animation3);
-      }
-      // Cleanup funkció a komponens eltávolításakor
-      return () => {
-        // Minden animáció törlése
-        animations.forEach((animation) => animation.kill());
-        // Minden ScrollTrigger törlése
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-      };
+        )
+      );
     }
-  }, []);
 
-  return (
-    <>
+    // Cleanup function
+    return () => {
+      animations.forEach((animation) => animation.kill());
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, [isMounted]); // Only run when component mounts
+
+  // Initial render with no animations
+  if (!isMounted) {
+    return (
       <section className="navbar-container">
         <nav className="navbar">
           <div className="logo">Photography</div>
-          <div className="hamburger" onClick={toggleMenu}>
-            {menuOpen ? <FaTimes size={30} /> : <FaBars size={30} />}
+          <div className="hamburger">
+            <FaBars size={30} />
           </div>
-          <ul className={`links ${menuOpen ? "active" : ""}`}>
+          <ul className="links">
             <li>
               <Link href="/">{t("navbar.home")}</Link>
             </li>
@@ -123,6 +140,31 @@ export default function Navbar() {
         </nav>
         <p className="navbar-text">photography</p>
       </section>
-    </>
+    );
+  }
+
+  // Full render with animations
+  return (
+    <section className="navbar-container">
+      <nav className="navbar">
+        <div className="logo">Photography</div>
+        <div className="hamburger" onClick={toggleMenu}>
+          {menuOpen ? <FaTimes size={30} /> : <FaBars size={30} />}
+        </div>
+        <ul className={`links ${menuOpen ? "active" : ""}`}>
+          <li>
+            <Link href="/">{t("navbar.home")}</Link>
+          </li>
+          <li>
+            <Link href="/myWorksPage">{t("navbar.my_works")}</Link>
+          </li>
+          <li>
+            <Link href="/contactMe">{t("navbar.contact_me")}</Link>
+          </li>
+          <LanguageSwitcher />
+        </ul>
+      </nav>
+      <p className="navbar-text">photography</p>
+    </section>
   );
 }

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Hero.css";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -7,23 +7,32 @@ import Image from "next/legacy/image";
 import { SiFacebook, SiTiktok, SiInstagram } from "react-icons/si";
 import { useTranslation } from "react-i18next";
 
-gsap.registerPlugin(ScrollTrigger);
-
 export default function Hero() {
   const { t } = useTranslation();
+  const [isMounted, setIsMounted] = useState(false);
 
+  // Handle initial mounting and GSAP registration
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      // Animációk és trigger-ek gyűjtése
-      const animations = [];
+    setIsMounted(true);
+    gsap.registerPlugin(ScrollTrigger);
+  }, []);
 
-      // Ellenőrizzük a képernyőméretet
-      const screenWidth = window.innerWidth;
+  // Handle animations after component is mounted
+  useEffect(() => {
+    if (!isMounted) return;
 
-      if (screenWidth > 768) {
-        const animation1 = gsap.fromTo(
+    const animations = [];
+    const screenWidth = window.innerWidth;
+
+    // Hero title animation for larger screens
+    if (screenWidth > 768) {
+      animations.push(
+        gsap.fromTo(
           ".hero-title",
-          { opacity: 0, scale: 0 }, // Kezdőállapot
+          {
+            opacity: 0,
+            scale: 0,
+          },
           {
             opacity: 1,
             scale: 1,
@@ -37,11 +46,13 @@ export default function Hero() {
               markers: false,
             },
           }
-        );
-        animations.push(animation1);
-      }
+        )
+      );
+    }
 
-      const animation2 = gsap.fromTo(
+    // Social icons animations
+    animations.push(
+      gsap.fromTo(
         ".social-icon3",
         { x: "300%" },
         {
@@ -55,11 +66,11 @@ export default function Hero() {
           },
           ease: "power2.out",
         }
-      );
+      )
+    );
 
-      animations.push(animation2);
-
-      const animation3 = gsap.fromTo(
+    animations.push(
+      gsap.fromTo(
         ".social-icon1",
         { x: "-300%" },
         {
@@ -73,21 +84,19 @@ export default function Hero() {
           },
           ease: "power2.out",
         }
-      );
+      )
+    );
 
-      animations.push(animation3);
+    // Cleanup function
+    return () => {
+      animations.forEach((animation) => animation.kill());
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, [isMounted]); // Only run when component mounts
 
-      // Cleanup funkció a komponens eltávolításakor
-      return () => {
-        // Minden animáció törlése
-        animations.forEach((animation) => animation.kill());
-        // Minden ScrollTrigger törlése
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-      };
-    }
-  }, []);
-  return (
-    <>
+  // Initial render for SSR
+  if (!isMounted) {
+    return (
       <section className="hero">
         <Image
           className="her0-image"
@@ -97,8 +106,6 @@ export default function Hero() {
           layout="fill"
         />
         <h1 className="hero-title">{t("hero.title")}</h1>
-
-        {/* Social Icons */}
         <div className="social-icons-wrapper">
           <a
             href="https://www.facebook.com"
@@ -126,6 +133,46 @@ export default function Hero() {
           </a>
         </div>
       </section>
-    </>
+    );
+  }
+
+  // Full render with animations enabled
+  return (
+    <section className="hero">
+      <Image
+        className="her0-image"
+        src="/hero.webp"
+        alt="Hero Image"
+        priority
+        layout="fill"
+      />
+      <h1 className="hero-title">{t("hero.title")}</h1>
+      <div className="social-icons-wrapper">
+        <a
+          href="https://www.facebook.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="social-icon social-icon1"
+        >
+          <SiFacebook size={52} />
+        </a>
+        <a
+          href="https://www.instagram.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="social-icon"
+        >
+          <SiInstagram size={52} />
+        </a>
+        <a
+          href="https://www.tiktok.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="social-icon social-icon3"
+        >
+          <SiTiktok size={52} />
+        </a>
+      </div>
+    </section>
   );
 }

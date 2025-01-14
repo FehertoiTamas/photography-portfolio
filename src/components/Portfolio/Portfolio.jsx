@@ -8,16 +8,20 @@ import { GrBottomCorner, GrTopCorner } from "react-icons/gr";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 
-gsap.registerPlugin(ScrollTrigger);
-
 const Portfolio = () => {
   const { t } = useTranslation();
   const [hovered, setHovered] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
+  // Initial mount effect
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
+    setIsMounted(true);
     gsap.registerPlugin(ScrollTrigger);
+  }, []);
+
+  // GSAP animations effect
+  useEffect(() => {
+    if (!isMounted) return;
 
     const texts = gsap.utils.toArray(".portfolio-text");
 
@@ -46,7 +50,80 @@ const Portfolio = () => {
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  }, []);
+  }, [isMounted]);
+
+  if (!isMounted) {
+    return (
+      <section className="portfolio">
+        <div className="portfolio-container reverse">
+          <div className="portfolio-side-text">
+            <span className="numbers">0</span>
+            <span className="numbers">1</span>
+          </div>
+          <div className="portfolio-image">
+            <Link href="/myWorksPage">
+              <Image
+                className="portfolio-image-next"
+                src="/portfolio01.webp"
+                alt=""
+                priority
+                width={1100}
+                height={800}
+              />
+            </Link>
+          </div>
+        </div>
+
+        <div className="portfolio-container">
+          <h2 className="portfolio-text">"{t("portfolio.cuba")}"</h2>
+        </div>
+
+        <div className="portfolio-container">
+          <h2 className="portfolio-text">"{t("portfolio.galapagos")}"</h2>
+        </div>
+
+        <div className="portfolio-container reverse">
+          <div className="portfolio-image">
+            <Image
+              className="portfolio-image-next"
+              src="/portfolio02.webp"
+              alt=""
+              priority
+              width={1100}
+              height={800}
+              layout="intrinsic"
+            />
+          </div>
+          <div className="portfolio-side-text">
+            <span className="numbers">0</span>
+            <span className="numbers">2</span>
+          </div>
+        </div>
+
+        <div className="portfolio-container">
+          <div className="portfolio-side-text">
+            <span className="numbers">0</span>
+            <span className="numbers">3</span>
+          </div>
+          <div className="portfolio-image">
+            <Image
+              className="portfolio-image-next"
+              src="/portfolio03.webp"
+              alt=""
+              priority
+              width={1100}
+              height={800}
+              layout="intrinsic"
+            />
+          </div>
+        </div>
+
+        <div className="portfolio-container">
+          <h2 className="portfolio-text">"{t("portfolio.peru")}"</h2>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="portfolio">
@@ -66,8 +143,8 @@ const Portfolio = () => {
               src="/portfolio01.webp"
               alt=""
               priority
-              width={1100} // Set an appropriate width
-              height={800} // Set a valid height (or calculate it based on aspect ratio)
+              width={1100}
+              height={800}
             />
             {hovered && (
               <div className="focus-lines">
@@ -102,6 +179,7 @@ const Portfolio = () => {
       <div className="portfolio-container">
         <h2 className="portfolio-text">"{t("portfolio.galapagos")}"</h2>
       </div>
+
       <div className="portfolio-container reverse">
         <div
           className="portfolio-image"
@@ -113,8 +191,8 @@ const Portfolio = () => {
             src="/portfolio02.webp"
             alt=""
             priority
-            width={1100} // Set an appropriate width
-            height={800} // Set a valid height (or calculate it based on aspect ratio)
+            width={1100}
+            height={800}
             layout="intrinsic"
           />
           {hovered && (
@@ -137,7 +215,6 @@ const Portfolio = () => {
             </div>
           )}
         </div>
-
         <div className="portfolio-side-text">
           <span className="numbers">0</span>
           <span className="numbers">2</span>
@@ -159,8 +236,8 @@ const Portfolio = () => {
             src="/portfolio03.webp"
             alt=""
             priority
-            width={1100} // Set an appropriate width
-            height={800} // Set a valid height (or calculate it based on aspect ratio)
+            width={1100}
+            height={800}
             layout="intrinsic"
           />
           {hovered && (
@@ -184,6 +261,7 @@ const Portfolio = () => {
           )}
         </div>
       </div>
+
       <div className="portfolio-container">
         <h2 className="portfolio-text">"{t("portfolio.peru")}"</h2>
       </div>
