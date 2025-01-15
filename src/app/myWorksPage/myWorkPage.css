@@ -128,14 +128,19 @@
 }
 
 .lightbox-content {
-  max-width: 90%;
-  max-height: 90vh;
   position: relative;
+  max-width: 60%;
+  max-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   animation: scaleIn 0.3s ease;
 }
 
 .lightbox-image {
-  width: 100%;
+  max-width: 100%;
+  max-height: 90vh;
+  width: auto;
   height: auto;
   object-fit: contain;
 }
@@ -215,6 +220,12 @@
   .lightbox-nav {
     padding: 0.5rem 0.25rem;
   }
+
+  .lightbox-content {
+    max-width: 90%;
+    max-height: 90vh;
+  }
+
 }
 
 @media (max-width: 480px) {
@@ -228,6 +239,9 @@
 
   .lightbox-content {
     width: 95%;
+    max-width: 90%;
+    max-height: 90vh;
+
   }
 
   .lightbox-nav {
