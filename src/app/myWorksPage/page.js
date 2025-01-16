@@ -6,6 +6,7 @@ import { X, ChevronLeft, ChevronRight, Heart } from "lucide-react";
 import PagesNav from "@/components/PagesNav/PagesNav";
 import "./myWorkPage.css";
 
+
 const portfolios = [
   {
     id: 1,
