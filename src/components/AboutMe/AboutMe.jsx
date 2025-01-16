@@ -54,10 +54,10 @@ const AboutMe = () => {
             ease: "sine.inOut",
             scrollTrigger: {
               trigger: ".about-container",
-              start: "center bottom",
+              start: "center 150%",
               end: "center 60%",
               scrub: true,
-              markers: false,
+              markers: true,
             },
           }
         );

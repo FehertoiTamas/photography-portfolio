@@ -81,6 +81,7 @@ export default function Hero() {
             end: "+=500",
             scrub: 1.5,
             toggleActions: "play none none reverse",
+            markers: false,
           },
           ease: "power2.out",
         }
