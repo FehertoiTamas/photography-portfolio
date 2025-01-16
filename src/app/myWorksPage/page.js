@@ -29,9 +29,43 @@ const portfolios = [
     title: "Galapagos",
     text: "Galapagos",
     images: [
-      "/images/portfolio2/image1.jpg",
-      "/images/portfolio2/image2.jpg",
-      "/images/portfolio2/image3.jpg",
+      {
+        src: "/portfolio2/image1.webp",
+        aspectRatio: "landscape"
+      },
+      {
+        src: "/portfolio2/image2.webp",
+        aspectRatio: "portrait"
+      },
+      {
+        src: "/portfolio2/image3.webp",
+        aspectRatio: "landscape"
+      },
+      {
+        src: "/portfolio2/image4.webp",
+        aspectRatio: "portrait"
+      },
+      {
+        src: "/portfolio2/image5.webp",
+        aspectRatio: "landscape"
+
+      },
+      {
+        src: "/portfolio2/image6.webp",
+        aspectRatio: "portrait"
+      },
+      {
+        src: "/portfolio2/image7.webp",
+        aspectRatio: "portrait"
+      },
+      {
+        src: "/portfolio2/image8.webp",
+        aspectRatio: "landscape"
+      },
+      {
+        src: "/portfolio2/image9.webp",
+        aspectRatio: "landscape"
+      }
     ],
   },
   {
@@ -126,13 +160,13 @@ const MyWorksPage = () => {
             className="portfolio-image-container"
             onClick={() => handleImageClick(index)}
           >
-            <Image
+            <div className="image-wrapper">            <Image
               src={image}
               alt={`Portfolio ${selectedPortfolio.id} Image ${index + 1}`}
-              width={1200}
-              height={800}
-              className="portfolio-image"
+              layout="fill"
+              objectFit="cover" className="portfolio-image"
             />
+            </div>
           </div>
         ))}
       </div>
@@ -148,13 +182,14 @@ const MyWorksPage = () => {
           </button>
 
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-            <Image
-              src={selectedPortfolio.images[selectedImageIndex]}
-              alt={`Image ${selectedImageIndex + 1}`}
-              width={1200}
-              height={800}
-              className="lightbox-image"
-            />
+            <div className="ligthbox-image-wrapper
+            "><Image
+                src={selectedPortfolio.images[selectedImageIndex]}
+                alt={`Image ${selectedImageIndex + 1}`}
+                layout="fill"
+                objectFit="contain" className="lightbox-image"
+              />
+            </div>
             <div className="lightbox-counter">
               {selectedImageIndex + 1} / {selectedPortfolio.images.length}
             </div>
