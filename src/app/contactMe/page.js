@@ -55,39 +55,36 @@ const ContactMe = () => {
             href="https://wa.me/1234567890"
             target="_blank"
             rel="noopener noreferrer"
-            className="contact-icon">
-            <SiWhatsapp size={52} />
+          >
+            <SiWhatsapp className="contact-icon" />
           </a>
           <a
             href="mailto:someone@example.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="contact-icon">
-            <FiMail size={52} />
+          >
+            <FiMail className="contact-icon" />
           </a>
           <a
             href="https://www.facebook.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="contact-icon"
           >
-            <SiFacebook size={48} />
+            <SiFacebook className="contact-icon" />
           </a>
           <a
             href="https://www.instagram.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="contact-icon"
           >
-            <SiInstagram size={48} />
+            <SiInstagram className="contact-icon" />
           </a>
           <a
             href="https://www.tiktok.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="contact-icon"
           >
-            <SiTiktok size={48} />
+            <SiTiktok className="contact-icon" />
           </a>
         </div>
       )}

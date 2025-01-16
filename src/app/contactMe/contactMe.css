@@ -65,25 +65,47 @@
 }
 
 .contact-icon {
+  font-size: 3rem;
   color: gold;
   transition: transform 1s ease;
-  /* Transition animáció a transform változásra */
 }
 
 .contact-icon:hover {
   transform: scale(1.5);
-  /* A scale-t a transform-al együtt alkalmazzuk */
+}
+
+@media (max-width: 1024px) {
+  .contact-title {
+    text-align: center;
+  }
+
+  .contact-info {
+    right: 7%;
+    top: 50%;
+  }
 }
 
 @media (max-width: 768px) {
   .contact-info {
     flex-direction: column;
-    right: 0%;
-    top: 50%;
+    right: 5%;
+    top: 40%;
+    gap: 1rem;
   }
-
-  .contact-title {}
-
 }
 
-@media (max-width: 480px) {}
+@media (max-width: 480px) {
+  .contact-title {
+    font-size: 2rem;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    right: -15%;
+    top: 40%;
+  }
+
+  .contact-icon {
+    font-size: 2.25rem;
+  }
+}
