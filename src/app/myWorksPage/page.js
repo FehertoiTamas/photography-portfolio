@@ -13,15 +13,42 @@ const portfolios = [
     title: "Cuba",
     text: "Cuba",
     images: [
-      "/portfolio1/image1.webp",
-      "/portfolio1/image2.webp",
-      "/portfolio1/image3.webp",
-      "/portfolio1/image4.webp",
-      "/portfolio1/image5.webp",
-      "/portfolio1/image6.webp",
-      "/portfolio1/image7.webp",
-      "/portfolio1/image8.webp",
-      "/portfolio1/image9.webp",
+      {
+        src: "/portfolio1/image1.webp",
+        aspectRatio: "landscape"
+      },
+      {
+        src: "/portfolio1/image2.webp",
+        aspectRatio: "portrait"
+      },
+      {
+        src: "/portfolio1/image3.webp",
+        aspectRatio: "landscape"
+      },
+      {
+        src: "/portfolio1/image4.webp",
+        aspectRatio: "landscape"
+      },
+      {
+        src: "/portfolio1/image5.webp",
+        aspectRatio: "landscape"
+      },
+      {
+        src: "/portfolio1/image6.webp",
+        aspectRatio: "landscape"
+      },
+      {
+        src: "/portfolio1/image7.webp",
+        aspectRatio: "landscape"
+      },
+      {
+        src: "/portfolio1/image8.webp",
+        aspectRatio: "landscape"
+      },
+      {
+        src: "/portfolio1/image9.webp",
+        aspectRatio: "landscape"
+      },
     ],
   },
   {
@@ -73,9 +100,43 @@ const portfolios = [
     title: "Peru",
     text: "Peru",
     images: [
-      "/images/portfolio3/image1.jpg",
-      "/images/portfolio3/image2.jpg",
-      "/images/portfolio3/image3.jpg",
+      {
+        src: "/portfolio3/image1.webp",
+        aspectRatio: "landscape"
+      },
+      {
+        src: "/portfolio3/image2.webp",
+        aspectRatio: "landscape"
+      },
+      {
+        src: "/portfolio3/image3.webp",
+        aspectRatio: "portrait"
+      },
+      {
+        src: "/portfolio3/image4.webp",
+        aspectRatio: "landscape"
+      },
+      {
+        src: "/portfolio3/image5.webp",
+        aspectRatio: "landscape"
+
+      },
+      {
+        src: "/portfolio3/image6.webp",
+        aspectRatio: "portrait"
+      },
+      {
+        src: "/portfolio3/image7.webp",
+        aspectRatio: "landscape"
+      },
+      {
+        src: "/portfolio3/image8.webp",
+        aspectRatio: "portrait"
+      },
+      {
+        src: "/portfolio3/image9.webp",
+        aspectRatio: "landscape"
+      }
     ],
   },
 ];
@@ -136,6 +197,11 @@ const MyWorksPage = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedImageIndex, handlePrevImage, handleNextImage]);
 
+  const getGridSpan = (aspectRatio) => {
+    // Nagyobb területet foglalunk a kiemelt képeknek
+    return aspectRatio === "portrait" ? "tall" : "wide";
+  };
+
   return (
     <section className="my-work-page">
       <PagesNav />
@@ -157,20 +223,21 @@ const MyWorksPage = () => {
         {selectedPortfolio?.images.map((image, index) => (
           <div
             key={index}
-            className="portfolio-image-container"
+            className={`portfolio-image-container ${getGridSpan(image.aspectRatio)}`}
             onClick={() => handleImageClick(index)}
           >
-            <div className="image-wrapper">            <Image
-              src={image}
-              alt={`Portfolio ${selectedPortfolio.id} Image ${index + 1}`}
-              layout="fill"
-              objectFit="cover" className="portfolio-image"
-            />
+            <div className="image-wrapper">
+              <Image
+                src={image.src}
+                alt={`Portfolio ${selectedPortfolio.id} Image ${index + 1}`}
+                layout="fill"
+                objectFit="cover"
+                className="portfolio-image"
+              />
             </div>
           </div>
         ))}
       </div>
-
       {selectedImageIndex !== null && (
         <div className="lightbox" onClick={closeLightbox}>
           <button className="lightbox-close" onClick={closeLightbox}>
