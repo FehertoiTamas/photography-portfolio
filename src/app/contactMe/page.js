@@ -47,7 +47,7 @@ const ContactMe = () => {
         Your browser does not support the video tag.
       </video>
       <div className={`content ${isVideoFinished ? "show-content" : ""}`}>
-        <h2>{t("contact_me")}</h2>
+        <h2 className="contact-title">{t("contact_me")}</h2>
       </div>
       {isVideoFinished && (
         <div className={`contact-info active`}>
@@ -71,7 +71,7 @@ const ContactMe = () => {
             rel="noopener noreferrer"
             className="contact-icon"
           >
-            <SiFacebook size={52} />
+            <SiFacebook size={48} />
           </a>
           <a
             href="https://www.instagram.com"
@@ -79,7 +79,7 @@ const ContactMe = () => {
             rel="noopener noreferrer"
             className="contact-icon"
           >
-            <SiInstagram size={52} />
+            <SiInstagram size={48} />
           </a>
           <a
             href="https://www.tiktok.com"
@@ -87,7 +87,7 @@ const ContactMe = () => {
             rel="noopener noreferrer"
             className="contact-icon"
           >
-            <SiTiktok size={52} />
+            <SiTiktok size={48} />
           </a>
         </div>
       )}
