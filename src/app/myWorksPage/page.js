@@ -2,8 +2,7 @@
 "use client";
 import React, { useState, useCallback } from "react";
 import Image from "next/legacy/image";
-import { useTranslation } from "react-i18next";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Heart } from "lucide-react";
 import PagesNav from "@/components/PagesNav/PagesNav";
 import "./myWorkPage.css";
 
@@ -15,42 +14,52 @@ const portfolios = [
     images: [
       {
         src: "/portfolio1/image1.webp",
-        aspectRatio: "landscape"
+        aspectRatio: "landscape",
+        likes: 0
       },
       {
         src: "/portfolio1/image2.webp",
-        aspectRatio: "portrait"
+        aspectRatio: "portrait",
+        likes: 5
       },
       {
         src: "/portfolio1/image3.webp",
-        aspectRatio: "landscape"
+        aspectRatio: "landscape",
+        likes: 0
       },
       {
         src: "/portfolio1/image4.webp",
-        aspectRatio: "landscape"
+        aspectRatio: "landscape",
+        likes: 0
       },
       {
         src: "/portfolio1/image5.webp",
-        aspectRatio: "landscape"
+        aspectRatio: "landscape",
+        likes: 0
       },
       {
         src: "/portfolio1/image6.webp",
-        aspectRatio: "landscape"
+        aspectRatio: "landscape",
+        likes: 0
       },
       {
         src: "/portfolio1/image7.webp",
-        aspectRatio: "landscape"
+        aspectRatio: "landscape",
+        likes: 0
       },
       {
         src: "/portfolio1/image8.webp",
-        aspectRatio: "landscape"
+        aspectRatio: "landscape",
+        likes: 0
       },
       {
         src: "/portfolio1/image9.webp",
-        aspectRatio: "landscape"
+        aspectRatio: "landscape",
+        likes: 0
       },
     ],
   },
+
   {
     id: 2,
     title: "Galapagos",
@@ -58,43 +67,53 @@ const portfolios = [
     images: [
       {
         src: "/portfolio2/image1.webp",
-        aspectRatio: "landscape"
+        aspectRatio: "landscape",
+        likes: 0
       },
       {
         src: "/portfolio2/image2.webp",
-        aspectRatio: "portrait"
+        aspectRatio: "portrait",
+        likes: 0
       },
       {
         src: "/portfolio2/image3.webp",
-        aspectRatio: "landscape"
+        aspectRatio: "landscape",
+        likes: 0
       },
       {
         src: "/portfolio2/image4.webp",
-        aspectRatio: "portrait"
+        aspectRatio: "portrait",
+        likes: 0
       },
       {
         src: "/portfolio2/image5.webp",
-        aspectRatio: "landscape"
+        aspectRatio: "landscape",
+        likes: 0
 
       },
       {
         src: "/portfolio2/image6.webp",
-        aspectRatio: "portrait"
+        aspectRatio: "portrait",
+        likes: 0
       },
       {
         src: "/portfolio2/image7.webp",
-        aspectRatio: "portrait"
+        aspectRatio: "portrait",
+        likes: 0
       },
       {
         src: "/portfolio2/image8.webp",
-        aspectRatio: "landscape"
+        aspectRatio: "landscape",
+        likes: 0
       },
       {
         src: "/portfolio2/image9.webp",
-        aspectRatio: "landscape"
+        aspectRatio: "landscape",
+        likes: 0
       }
     ],
   },
+
   {
     id: 3,
     title: "Peru",
@@ -102,49 +121,58 @@ const portfolios = [
     images: [
       {
         src: "/portfolio3/image1.webp",
-        aspectRatio: "landscape"
+        aspectRatio: "landscape",
+        likes: 0
       },
       {
         src: "/portfolio3/image2.webp",
-        aspectRatio: "landscape"
+        aspectRatio: "landscape",
+        likes: 0
       },
       {
         src: "/portfolio3/image3.webp",
-        aspectRatio: "portrait"
+        aspectRatio: "portrait",
+        likes: 0
       },
       {
         src: "/portfolio3/image4.webp",
-        aspectRatio: "landscape"
+        aspectRatio: "landscape",
+        likes: 0
       },
       {
         src: "/portfolio3/image5.webp",
-        aspectRatio: "landscape"
+        aspectRatio: "landscape",
+        likes: 0
 
       },
       {
         src: "/portfolio3/image6.webp",
-        aspectRatio: "portrait"
+        aspectRatio: "portrait",
+        likes: 0
       },
       {
         src: "/portfolio3/image7.webp",
-        aspectRatio: "landscape"
+        aspectRatio: "landscape",
+        likes: 0
       },
       {
         src: "/portfolio3/image8.webp",
-        aspectRatio: "portrait"
+        aspectRatio: "portrait",
+        likes: 0
       },
       {
         src: "/portfolio3/image9.webp",
-        aspectRatio: "landscape"
+        aspectRatio: "landscape",
+        likes: 0
       }
     ],
   },
 ];
 
 const MyWorksPage = () => {
-  const { t } = useTranslation();
   const [selectedPortfolio, setSelectedPortfolio] = useState(portfolios[0]);
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+  const [likedImages, setLikedImages] = useState(new Set());
 
   const handlePortfolioClick = (portfolio) => {
     setSelectedPortfolio(portfolio);
@@ -202,6 +230,27 @@ const MyWorksPage = () => {
     return aspectRatio === "portrait" ? "tall" : "wide";
   };
 
+  const handleLike = (e, portfolioId, imageIndex) => {
+    e.stopPropagation(); // Megakadályozza a lightbox megnyitását kattintáskor
+
+    const imageKey = `${portfolioId}-${imageIndex}`;
+    setLikedImages(prev => {
+      const newLikes = new Set(prev);
+      if (newLikes.has(imageKey)) {
+        newLikes.delete(imageKey);
+        selectedPortfolio.images[imageIndex].likes--;
+      } else {
+        newLikes.add(imageKey);
+        selectedPortfolio.images[imageIndex].likes++;
+      }
+      return newLikes;
+    });
+  };
+
+  const isImageLiked = (portfolioId, imageIndex) => {
+    return likedImages.has(`${portfolioId}-${imageIndex}`);
+  };
+
   return (
     <section className="my-work-page">
       <PagesNav />
@@ -234,6 +283,18 @@ const MyWorksPage = () => {
                 objectFit="cover"
                 className="portfolio-image"
               />
+              <div className="like-container">
+                <button
+                  className={`like-button ${isImageLiked(selectedPortfolio.id, index) ? 'liked' : ''}`}
+                  onClick={(e) => handleLike(e, selectedPortfolio.id, index)}
+                >
+                  <Heart
+                    className="heart-icon"
+                    fill={isImageLiked(selectedPortfolio.id, index) ? "#ff0000" : "none"}
+                  />
+                  {image.likes > 0 && <span className="like-count">{image.likes}</span>}
+                </button>
+              </div>
             </div>
           </div>
         ))}

@@ -226,6 +226,54 @@
   }
 }
 
+/* Új like button styles */
+.like-container {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-image-container:hover .like-container {
+  opacity: 1;
+}
+
+.like-button {
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  border-radius: 20px;
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+}
+
+.like-button:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.heart-icon {
+  width: 20px;
+  height: 20px;
+  stroke: white;
+  transition: all 0.3s ease;
+}
+
+.like-button.liked .heart-icon {
+  stroke: #ff0000;
+}
+
+.like-count {
+  color: white;
+  font-size: 14px;
+  min-width: 20px;
+  text-align: left;
+}
+
 @media (max-width: 1200px) {
   .portfolio-gallery {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
