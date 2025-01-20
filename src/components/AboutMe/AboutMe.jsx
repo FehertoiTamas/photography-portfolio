@@ -5,6 +5,7 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslation } from "react-i18next";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -57,7 +58,7 @@ const AboutMe = () => {
               start: "center 150%",
               end: "center 60%",
               scrub: true,
-              markers: true,
+              markers: false,
             },
           }
         );
@@ -95,7 +96,9 @@ const AboutMe = () => {
             <p>
               <span>"{t("about_me.quotes")}"</span>
             </p>
-            <button className="contact-btn">{t("navbar.contact_me")}</button>
+            <Link href="/contactMe">
+              <button className="contact-btn">{t("navbar.contact_me")}</button>
+            </Link>
           </div>
         </div>
       </div>

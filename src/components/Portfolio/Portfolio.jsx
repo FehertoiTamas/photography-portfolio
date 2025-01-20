@@ -7,6 +7,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import { GrBottomCorner, GrTopCorner } from "react-icons/gr";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import { AiOutlineDoubleRight } from "react-icons/ai";
 
 const Portfolio = () => {
   const { t } = useTranslation();
@@ -84,15 +85,17 @@ const Portfolio = () => {
 
         <div className="portfolio-container reverse">
           <div className="portfolio-image">
-            <Image
-              className="portfolio-image-next"
-              src="/portfolio02.webp"
-              alt=""
-              priority
-              width={1100}
-              height={800}
-              layout="intrinsic"
-            />
+            <Link href="/myWorksPage">
+              <Image
+                className="portfolio-image-next"
+                src="/portfolio02.webp"
+                alt=""
+                priority
+                width={1100}
+                height={800}
+                layout="intrinsic"
+              />
+            </Link>
           </div>
           <div className="portfolio-side-text">
             <span className="numbers">0</span>
@@ -106,15 +109,17 @@ const Portfolio = () => {
             <span className="numbers">3</span>
           </div>
           <div className="portfolio-image">
-            <Image
-              className="portfolio-image-next"
-              src="/portfolio03.webp"
-              alt=""
-              priority
-              width={1100}
-              height={800}
-              layout="intrinsic"
-            />
+            <Link href="/myWorksPage">
+              <Image
+                className="portfolio-image-next"
+                src="/portfolio03.webp"
+                alt=""
+                priority
+                width={1100}
+                height={800}
+                layout="intrinsic"
+              />
+            </Link>
           </div>
         </div>
 
@@ -186,34 +191,39 @@ const Portfolio = () => {
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
-          <Image
-            className="portfolio-image-next"
-            src="/portfolio02.webp"
-            alt=""
-            priority
-            width={1100}
-            height={800}
-            layout="intrinsic"
-          />
-          {hovered && (
-            <div className="focus-lines">
-              <div className="focus-line top-left">
-                <GrTopCorner size={80} />
+          <Link href="/myWorksPage">
+            <Image
+              className="portfolio-image-next"
+              src="/portfolio02.webp"
+              alt=""
+              priority
+              width={1100}
+              height={800}
+              layout="intrinsic"
+            />
+            {hovered && (
+              <div className="focus-lines">
+                <div className="focus-line top-left">
+                  <GrTopCorner size={80} />
+                </div>
+                <div className="focus-line top-right">
+                  <GrTopCorner
+                    style={{ transform: "rotate(90deg)" }}
+                    size={80}
+                  />
+                </div>
+                <div className="focus-line bottom-left">
+                  <GrBottomCorner
+                    style={{ transform: "rotate(90deg)" }}
+                    size={80}
+                  />
+                </div>
+                <div className="focus-line bottom-right">
+                  <GrBottomCorner size={80} />
+                </div>
               </div>
-              <div className="focus-line top-right">
-                <GrTopCorner style={{ transform: "rotate(90deg)" }} size={80} />
-              </div>
-              <div className="focus-line bottom-left">
-                <GrBottomCorner
-                  style={{ transform: "rotate(90deg)" }}
-                  size={80}
-                />
-              </div>
-              <div className="focus-line bottom-right">
-                <GrBottomCorner size={80} />
-              </div>
-            </div>
-          )}
+            )}
+          </Link>
         </div>
         <div className="portfolio-side-text">
           <span className="numbers">0</span>
@@ -231,34 +241,39 @@ const Portfolio = () => {
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
-          <Image
-            className="portfolio-image-next"
-            src="/portfolio03.webp"
-            alt=""
-            priority
-            width={1100}
-            height={800}
-            layout="intrinsic"
-          />
-          {hovered && (
-            <div className="focus-lines">
-              <div className="focus-line top-left">
-                <GrTopCorner size={80} />
+          <Link href="/myWorksPage">
+            <Image
+              className="portfolio-image-next"
+              src="/portfolio03.webp"
+              alt=""
+              priority
+              width={1100}
+              height={800}
+              layout="intrinsic"
+            />
+            {hovered && (
+              <div className="focus-lines">
+                <div className="focus-line top-left">
+                  <GrTopCorner size={80} />
+                </div>
+                <div className="focus-line top-right">
+                  <GrTopCorner
+                    style={{ transform: "rotate(90deg)" }}
+                    size={80}
+                  />
+                </div>
+                <div className="focus-line bottom-left">
+                  <GrBottomCorner
+                    style={{ transform: "rotate(90deg)" }}
+                    size={80}
+                  />
+                </div>
+                <div className="focus-line bottom-right">
+                  <GrBottomCorner size={80} />
+                </div>
               </div>
-              <div className="focus-line top-right">
-                <GrTopCorner style={{ transform: "rotate(90deg)" }} size={80} />
-              </div>
-              <div className="focus-line bottom-left">
-                <GrBottomCorner
-                  style={{ transform: "rotate(90deg)" }}
-                  size={80}
-                />
-              </div>
-              <div className="focus-line bottom-right">
-                <GrBottomCorner size={80} />
-              </div>
-            </div>
-          )}
+            )}
+          </Link>
         </div>
       </div>
 
