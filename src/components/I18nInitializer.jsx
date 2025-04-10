@@ -1,6 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import i18n from "../app/i18n"; // Az i18n konfiguráció
+import GeoLocationDetector from "./GeoLocationDetector/GeoLocationDetector";
 
 // Nyelv inicializálás komponens
 export default function I18nInitializer() {
@@ -9,5 +10,5 @@ export default function I18nInitializer() {
     i18n.init();
   }, []);
 
-  return null; // Nem jelenítünk meg semmit
+  return <GeoLocationDetector />; // Rendereljük a GeoLocationDetector komponenst
 }
